@@ -1,7 +1,7 @@
-From 4be82f8d78800285fcb19eeb9cd483c5634d49d4 Mon Sep 17 00:00:00 2001
+From 1a7138181c8340b1d46d594a385683bcf6b8ebb2 Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Mon, 3 May 2021 06:24:52 +0430
-Subject: [PATCH 03/17] media: Use vendor_extra seccomp minijail
+Subject: [PATCH 03/31] media: Use vendor_extra seccomp minijail
 
 Change-Id: I2e668802d266ef2427ef86965be4ae90ac96a304
 ---
@@ -76,5 +76,5 @@ index 10b81356d1..7cca2afadf 100644
      strcpy(argv[0], "media.extractor");
      sp<ProcessState> proc(ProcessState::self());
 -- 
-2.49.0
+2.50.1
 

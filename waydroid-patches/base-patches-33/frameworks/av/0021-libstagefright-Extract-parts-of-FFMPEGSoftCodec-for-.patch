@@ -1,7 +1,7 @@
-From d7da61543e7d80c83841c4cbdf6e9eef0d0d9cb0 Mon Sep 17 00:00:00 2001
+From 80b9f3f6baf3ce6efcf92539b561748cec6f89e5 Mon Sep 17 00:00:00 2001
 From: Michael Goffioul <michael.goffioul@lincor.com>
 Date: Wed, 28 Apr 2021 20:16:34 -0400
-Subject: [PATCH 21/27] libstagefright: Extract parts of FFMPEGSoftCodec for
+Subject: [PATCH 21/31] libstagefright: Extract parts of FFMPEGSoftCodec for
  easier re-use
 
 The code in Utils.cpp is also used in the MPEG2 extractor, which is now
@@ -684,5 +684,5 @@ index 0000000000..cfa05ac5b6
 +
 +#endif
 -- 
-2.40.0
+2.50.1
 
