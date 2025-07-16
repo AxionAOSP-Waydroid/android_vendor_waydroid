@@ -1,7 +1,7 @@
-From a47d65fb84ea93d60a2ea1cf57885515b25c4a92 Mon Sep 17 00:00:00 2001
+From 2f7d7231c99559ca9757b950c7636f6d4212beee Mon Sep 17 00:00:00 2001
 From: Michael Goffioul <michael.goffioul@gmail.com>
 Date: Wed, 28 Sep 2022 08:13:21 +0200
-Subject: [PATCH 25/27] Add media extensions for FFMPEG codec2 service
+Subject: [PATCH 25/31] Add media extensions for FFMPEG codec2 service
 
 A plain buffer is used to transfer extra information from extractor to
 codecs. The buffer is mapped to a custom C2 paramkey.
@@ -94,5 +94,5 @@ index f9146c1b20..62be68beeb 100644
      kKeyDivXVersion       = 'DivX',  // int32_t
      kKeyDivXDrm           = 'QDrm',  // void *
 -- 
-2.40.0
+2.50.1
 

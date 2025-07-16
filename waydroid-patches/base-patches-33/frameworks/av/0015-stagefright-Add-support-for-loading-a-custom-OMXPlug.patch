@@ -1,7 +1,7 @@
-From c37ce2a04085e478690cb4604be14115436bf65f Mon Sep 17 00:00:00 2001
+From 14d6cbcc2d000cd667ff5bea5a67b72741a60f02 Mon Sep 17 00:00:00 2001
 From: Steve Kondik <steve@cyngn.com>
 Date: Wed, 8 Jul 2015 09:56:01 -0700
-Subject: [PATCH 15/27] stagefright: Add support for loading a custom OMXPlugin
+Subject: [PATCH 15/31] stagefright: Add support for loading a custom OMXPlugin
 
  * To facilitate moving the stagefright-plugins glue out of the
    framework, support is added to OMXMaster to load multiple
@@ -97,5 +97,5 @@ index 5d6c3ed29d..aaaefdaaad 100644
      void addPlugin(OMXPluginBase *plugin);
      void clearPlugins();
 -- 
-2.40.0
+2.50.1
 

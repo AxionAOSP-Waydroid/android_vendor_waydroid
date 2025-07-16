@@ -1,7 +1,7 @@
-From df2741e3fc856219dcd5b7edad5cbd451789a43a Mon Sep 17 00:00:00 2001
+From d12bc93bbedd594faa1c5f528e0fd447078372b5 Mon Sep 17 00:00:00 2001
 From: Michael Goffioul <michael.goffioul@gmail.com>
 Date: Wed, 28 Sep 2022 08:01:38 +0200
-Subject: [PATCH 24/27] Add OMX extensions from stagefright-plugins
+Subject: [PATCH 24/31] Add OMX extensions from stagefright-plugins
 
 This matches the code and makefiles reorganization in repo
 external/stagefright-plugins
@@ -226,5 +226,5 @@ index 0000000000..70c15ee97e
 +
 +#endif
 -- 
-2.40.0
+2.50.1
 

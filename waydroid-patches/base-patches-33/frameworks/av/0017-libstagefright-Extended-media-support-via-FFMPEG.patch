@@ -1,7 +1,7 @@
-From 96ecceda81c8ab0a1d870c969da2811dc16bde1b Mon Sep 17 00:00:00 2001
+From 29a69186040f3d3544587333f38105e59031af7f Mon Sep 17 00:00:00 2001
 From: Michael Goffioul <michael.goffioul@gmail.com>
 Date: Sun, 2 Jun 2019 18:55:36 -0400
-Subject: [PATCH 17/27] libstagefright: Extended media support via FFMPEG
+Subject: [PATCH 17/31] libstagefright: Extended media support via FFMPEG
 
  * Original work by Michael Chen - https://github.com/omxcodec
  * Original Kitkat port by Chih-Wei Huang / Android X86 project
@@ -2363,5 +2363,5 @@ index 49b2dec80e..8517b6bea6 100644
  
      static const size_t kNumMimeToRole =
 -- 
-2.40.0
+2.50.1
 
