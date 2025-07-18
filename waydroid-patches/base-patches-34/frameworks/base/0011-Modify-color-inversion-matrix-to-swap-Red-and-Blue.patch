@@ -1,0 +1,38 @@
+From e2a41281f633ea446f92d8b3c1456993ce35be38 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 12:14:18 +0000
+Subject: [PATCH 11/23] Modify color inversion matrix to swap Red and Blue 
+ colors
+
+Instead of color inversion it will produce Red and Blue colors swap,
+in order to correct displayed colors for R4xx and other old drivers
+still based on KMS API
+
+Change-Id: I417c3dd0ca6bf550fe5b17370999209739724a9c
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ .../android/server/display/color/ColorDisplayService.java | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/services/core/java/com/android/server/display/color/ColorDisplayService.java b/services/core/java/com/android/server/display/color/ColorDisplayService.java
+index a313bcf1f7af..a35a549c3b71 100644
+--- a/services/core/java/com/android/server/display/color/ColorDisplayService.java
++++ b/services/core/java/com/android/server/display/color/ColorDisplayService.java
+@@ -143,10 +143,10 @@ public final class ColorDisplayService extends SystemService {
+      * ProgramCache for full implementation details.
+      */
+     private static final float[] MATRIX_INVERT_COLOR = new float[]{
+-            0.402f, -0.598f, -0.599f, 0f,
+-            -1.174f, -0.174f, -1.175f, 0f,
+-            -0.228f, -0.228f, 0.772f, 0f,
+-            1f, 1f, 1f, 1f
++        0.0f, 0.0f, 1.0f, 0,
++        0.0f, 1.0f, 0.0f, 0,
++        1.0f, 0.0f, 0.0f, 0,
++           0,    0,    0, 1
+     };
+ 
+     private final DisplayManagerFlags mDisplayManagerFlags = new DisplayManagerFlags();
+-- 
+2.50.1
+

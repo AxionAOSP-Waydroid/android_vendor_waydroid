@@ -1,25 +1,25 @@
-From e2db01661334a66532b36ef53af242d74dfe67d3 Mon Sep 17 00:00:00 2001
-From: Alessandro Astone <ales.astone@gmail.com>
-Date: Sun, 26 Jun 2022 11:22:00 +0200
-Subject: [PATCH 6/7] seccomp: Allow SYS_kcmp for mesa
+From e36cb4614d7fd7d1c9583b0246860d11e51c3fc6 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 11:02:35 +0000
+Subject: [PATCH 6/6] seccomp: Allow SYS_kcmp for mesa
 
-Change-Id: I93fba0c397259e90bb1829fe0d7a36b52de94023
+Change-Id: I87339698a7607a13fb1fe9c7493133997a3ec797
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
  libc/SECCOMP_ALLOWLIST_COMMON.TXT | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/libc/SECCOMP_ALLOWLIST_COMMON.TXT b/libc/SECCOMP_ALLOWLIST_COMMON.TXT
-index 0366fdf0f..5d9cac6de 100644
+index 1d58475a2..06ac6eef2 100644
 --- a/libc/SECCOMP_ALLOWLIST_COMMON.TXT
 +++ b/libc/SECCOMP_ALLOWLIST_COMMON.TXT
-@@ -78,3 +78,6 @@ int sched_rr_get_interval_time64(pid_t, timespec64*) lp32
- int userfaultfd(int) all
- # Since Linux 5.9, used by POSIX_SPAWN_CLOEXEC_DEFAULT
- int close_range(unsigned int, unsigned int, int) all
+@@ -82,3 +82,6 @@ int sched_rr_get_interval_time64(pid_t, timespec64*) lp32
+ # support seems potentially useful for Android (though the struct that
+ # changes size over time is obviously problematic).
+ pid_t clone3(clone_args*, size_t) all
 +
 +# mesa
 +int kcmp(pid_t pid1, pid_t pid2, int type, unsigned long idx1, unsigned long idx2) all
-\ No newline at end of file
 -- 
-2.40.1
+2.50.1
 

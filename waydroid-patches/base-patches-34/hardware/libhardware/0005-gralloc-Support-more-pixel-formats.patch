@@ -1,15 +1,16 @@
-From 2a9e3a21d6c0cfeef466c249716888f76270de6d Mon Sep 17 00:00:00 2001
-From: Alessandro Astone <ales.astone@gmail.com>
-Date: Tue, 27 Feb 2024 01:32:02 +0100
+From e5acec34789c4c459d39b64bc6ccdd014b4e7a0d Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 13:59:48 +0000
 Subject: [PATCH 5/5] gralloc: Support more pixel formats
 
 Change-Id: I5ec74e78cd702d8f2e7a7a8de843e6055491c4a0
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
  modules/gralloc/gralloc.cpp | 6 ++++++
  1 file changed, 6 insertions(+)
 
 diff --git a/modules/gralloc/gralloc.cpp b/modules/gralloc/gralloc.cpp
-index e9a964e7..ce429e40 100644
+index 69c6cd93..a5f103df 100644
 --- a/modules/gralloc/gralloc.cpp
 +++ b/modules/gralloc/gralloc.cpp
 @@ -33,6 +33,8 @@
@@ -29,16 +30,16 @@ index e9a964e7..ce429e40 100644
              bytesPerPixel = 4;
              break;
          case HAL_PIXEL_FORMAT_RGB_888:
-@@ -224,6 +227,9 @@ static int gralloc_alloc(alloc_device_t* dev,
-         case HAL_PIXEL_FORMAT_RAW16:
-             bytesPerPixel = 2;
+@@ -227,6 +230,9 @@ static int gralloc_alloc(alloc_device_t* dev,
+         case HAL_PIXEL_FORMAT_BLOB:
+             bytesPerPixel = 1;
              break;
 +        case HAL_PIXEL_FORMAT_R8:
 +            bytesPerPixel = 1;
 +            break;
          default:
+             ALOGE("gralloc_alloc bad format %d", format);
              return -EINVAL;
-     }
 -- 
-2.43.2
+2.50.1
 

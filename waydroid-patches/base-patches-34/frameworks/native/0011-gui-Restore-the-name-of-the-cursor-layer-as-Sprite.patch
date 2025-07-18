@@ -1,7 +1,7 @@
-From b7f4489a4566577ee1bf6cde2c9c63a555f4fa2a Mon Sep 17 00:00:00 2001
+From 8fb55e804a483a98a54210c193f877c781bf3cee Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Fri, 24 Jan 2025 00:23:57 +0100
-Subject: [PATCH 11/12] gui: Restore the name of the cursor layer as Sprite
+Subject: [PATCH 11/13] gui: Restore the name of the cursor layer as Sprite
 
 The cursor layer used to be called Sprite in Android 11.
 The Waydroid hwcomposer checks the name to identify the cursor layer,
@@ -13,10 +13,10 @@ Change-Id: Id4f876e3999e268c75e13843077afbdaa1ca03e3
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/libs/gui/SurfaceControl.cpp b/libs/gui/SurfaceControl.cpp
-index 654fb336fe..87ff5f8916 100644
+index c5f9c38ca3..9a0bd19446 100644
 --- a/libs/gui/SurfaceControl.cpp
 +++ b/libs/gui/SurfaceControl.cpp
-@@ -138,7 +138,7 @@ sp<Surface> SurfaceControl::generateSurfaceLocked()
+@@ -139,7 +139,7 @@ sp<Surface> SurfaceControl::generateSurfaceLocked()
      uint32_t ignore;
      auto flags = mCreateFlags & (ISurfaceComposerClient::eCursorWindow |
                                   ISurfaceComposerClient::eOpaque);
@@ -26,5 +26,5 @@ index 654fb336fe..87ff5f8916 100644
      mBbq = sp<BLASTBufferQueue>::make("bbq-adapter", mBbqChild, mWidth, mHeight, mFormat);
  
 -- 
-2.48.1
+2.50.1
 

@@ -1,0 +1,29 @@
+From 53ae0ed1411c77cca7c70e7becb56fe3863b42e6 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 14:37:40 +0000
+Subject: [PATCH] Support no-bpf usecase
+
+Change-Id: I75a427a2a41aa4ab1104ad88a891bef0dc2d9c91
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ bpfloader/BpfLoader.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/bpfloader/BpfLoader.cpp b/bpfloader/BpfLoader.cpp
+index 08fd72d..30bad4b 100644
+--- a/bpfloader/BpfLoader.cpp
++++ b/bpfloader/BpfLoader.cpp
+@@ -207,8 +207,8 @@ int main(int argc, char** argv) {
+             ALOGE("If this triggers randomly, you might be hitting some memory allocation "
+                   "problems or startup script race.");
+             ALOGE("--- DO NOT EXPECT SYSTEM TO BOOT SUCCESSFULLY ---");
+-            sleep(20);
+-            return 2;
++	    android::base::SetProperty("bpf.progs_loaded", "1");
++	    return 0;
+         }
+     }
+ 
+-- 
+2.50.1
+

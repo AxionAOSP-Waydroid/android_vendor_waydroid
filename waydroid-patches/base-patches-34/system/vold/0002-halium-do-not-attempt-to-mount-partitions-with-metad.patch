@@ -1,22 +1,23 @@
-From 7750c9457dff17f659d948d599b28319ef590e9e Mon Sep 17 00:00:00 2001
-From: TheKit <nekit1000@gmail.com>
-Date: Sun, 3 Oct 2021 00:45:17 +0300
-Subject: [PATCH 2/6] (halium) do not attempt to mount partitions with metadata
- encryption
+From acaf871ca0575c6d6c1a30e9fd3e11dc6dd8ed70 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 15:21:27 +0000
+Subject: [PATCH 2/7] (halium) do not attempt to mount partitions with metadata
+  encryption
 
 Change-Id: I77b72f49301879e960d7a8992c2736ccd5cc7096
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
  MetadataCrypt.cpp | 4 ++++
  1 file changed, 4 insertions(+)
 
 diff --git a/MetadataCrypt.cpp b/MetadataCrypt.cpp
-index 50943fc..184c600 100644
+index 1f7d649f..f0ce8e56 100644
 --- a/MetadataCrypt.cpp
 +++ b/MetadataCrypt.cpp
-@@ -243,6 +243,10 @@ bool fscrypt_mount_metadata_encrypted(const std::string& blk_device, const std::
-     LOG(DEBUG) << "fscrypt_mount_metadata_encrypted: " << mount_point
+@@ -252,6 +252,10 @@ bool fscrypt_mount_metadata_encrypted(const std::string& blk_device, const std::
                 << " encrypt: " << needs_encrypt << " format: " << should_format << " with "
-                << fs_type;
+                << fs_type << " block device: " << blk_device
+                << " and zoned device: " << zoned_device;
 +
 +    // Disabled for Halium
 +    return false;
@@ -25,5 +26,5 @@ index 50943fc..184c600 100644
      if (encrypted_state != "" && encrypted_state != "encrypted") {
          LOG(ERROR) << "fscrypt_mount_metadata_encrypted got unexpected starting state: "
 -- 
-2.39.2
+2.50.1
 

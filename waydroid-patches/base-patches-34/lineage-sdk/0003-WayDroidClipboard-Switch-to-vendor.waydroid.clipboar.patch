@@ -1,28 +1,29 @@
-From 353ff595cb6ec25884ca69549292fe28f4044139 Mon Sep 17 00:00:00 2001
-From: Alessandro Astone <ales.astone@gmail.com>
-Date: Wed, 19 Mar 2025 00:10:45 +0100
-Subject: [PATCH] WayDroidClipboard: Switch to vendor.waydroid.clipboard
+From 6434dbd016e679c973fe2f0f6e4310db946623e5 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 14:06:58 +0000
+Subject: [PATCH 3/3] WayDroidClipboard: Switch to vendor.waydroid.clipboard 
  service
 
 Clipboard is now implemented in hwcomposer rather than in waydroid.py
 
 Change-Id: I652cbd4c1dc0cddf2802cdb7a4ae215a71a21552
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
  Android.bp                                    |  1 +
  .../app/LineageContextConstants.java          |  7 ------
- .../java/lineageos/waydroid/Clipboard.java    | 20 ++++++++--------
+ .../java/lineageos/waydroid/Clipboard.java    | 19 +++++++--------
  .../java/lineageos/waydroid/IClipboard.aidl   | 23 -------------------
- 4 files changed, 11 insertions(+), 40 deletions(-)
+ 4 files changed, 11 insertions(+), 39 deletions(-)
  delete mode 100644 sdk/src/java/lineageos/waydroid/IClipboard.aidl
 
 diff --git a/Android.bp b/Android.bp
-index 9a35f3bb..b721b7fd 100644
+index 709b5bd4..c6db3289 100644
 --- a/Android.bp
 +++ b/Android.bp
-@@ -71,6 +71,7 @@ lineage_sdk_LOCAL_STATIC_JAVA_LIBRARIES = [
+@@ -70,6 +70,7 @@ lineage_sdk_LOCAL_STATIC_JAVA_LIBRARIES = [
+     "vendor.lineage.livedisplay-V2.0-java",
      "vendor.lineage.livedisplay-V2.1-java",
      "vendor.lineage.touch-V1.0-java",
-     "vendor.lineage.trust-V1.0-java",
 +    "vendor.waydroid.clipboard-V1.0-java",
  ]
  
@@ -46,7 +47,7 @@ index a221eb50..6c3f109f 100644
       * Manages waydroid hardware
       *
 diff --git a/sdk/src/java/lineageos/waydroid/Clipboard.java b/sdk/src/java/lineageos/waydroid/Clipboard.java
-index ba5a333a..d08590c7 100644
+index ba5a333a..ada3507b 100644
 --- a/sdk/src/java/lineageos/waydroid/Clipboard.java
 +++ b/sdk/src/java/lineageos/waydroid/Clipboard.java
 @@ -22,12 +22,15 @@ import android.os.RemoteException;
@@ -66,7 +67,7 @@ index ba5a333a..d08590c7 100644
      private static Clipboard sInstance;
  
      private Context mContext;
-@@ -52,24 +55,21 @@ public class Clipboard {
+@@ -52,24 +55,22 @@ public class Clipboard {
      }
  
      /** @hide **/
@@ -84,7 +85,7 @@ index ba5a333a..d08590c7 100644
              Log.e(TAG, "null service. SAD!");
 -            return null;
          }
--
+ 
 -        sService = IClipboard.Stub.asInterface(b);
          return sService;
      }
@@ -96,7 +97,7 @@ index ba5a333a..d08590c7 100644
          if (service == null) {
              return;
          }
-@@ -82,7 +82,7 @@ public class Clipboard {
+@@ -82,7 +83,7 @@ public class Clipboard {
      }
  
      public String getClipboardData() {
@@ -135,5 +136,5 @@ index b370e71a..00000000
 -    String getClipboardData();
 -}
 -- 
-2.48.1
+2.50.1
 

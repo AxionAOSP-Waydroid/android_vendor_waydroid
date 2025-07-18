@@ -1,7 +1,7 @@
-From f9f2220c677662b07b2b7eabeb6ec4e371911cfa Mon Sep 17 00:00:00 2001
+From 6942bd44990add75be960a02ed81d0826a7552aa Mon Sep 17 00:00:00 2001
 From: TheKit <nekit1000@gmail.com>
 Date: Tue, 3 Aug 2021 23:49:21 +0200
-Subject: [PATCH 03/13] (halium) init: ignore androidboot.force_normal_boot in
+Subject: [PATCH 03/16] (halium) init: ignore androidboot.force_normal_boot in
  kernel cmdline
 
 Change-Id: Iba965eb43fee2e5642f36fca301e187e5291c100
@@ -10,10 +10,10 @@ Change-Id: Iba965eb43fee2e5642f36fca301e187e5291c100
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/init/first_stage_init.cpp b/init/first_stage_init.cpp
-index 527cbc10e..1273633bd 100644
+index c3bd163178..5c315f9fce 100644
 --- a/init/first_stage_init.cpp
 +++ b/init/first_stage_init.cpp
-@@ -104,8 +104,10 @@ void FreeRamdisk(DIR* dir, dev_t dev) {
+@@ -112,8 +112,10 @@ void FreeRamdisk(DIR* dir, dev_t dev) {
  }
  
  bool ForceNormalBoot(const std::string& cmdline, const std::string& bootconfig) {
@@ -27,5 +27,5 @@ index 527cbc10e..1273633bd 100644
  
  static void Copy(const char* src, const char* dst) {
 -- 
-2.48.1
+2.50.1
 

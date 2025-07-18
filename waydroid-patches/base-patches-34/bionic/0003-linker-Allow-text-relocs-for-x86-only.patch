@@ -1,7 +1,7 @@
-From bd3c3aad1e079b3b052cd639e0ae485972ab20d6 Mon Sep 17 00:00:00 2001
+From 1c3f963b4e185c259edbb9a01accf2c58baa9547 Mon Sep 17 00:00:00 2001
 From: "Christopher R. Palmer" <crpalmer@gmail.com>
 Date: Sun, 7 Feb 2016 06:46:05 -0500
-Subject: [PATCH 3/7] linker: Allow text-relocs for x86 (only)
+Subject: [PATCH 3/6] linker: Allow text-relocs for x86 (only)
 
 This effectively reverts
 
@@ -20,10 +20,10 @@ Change-Id: I68397f4d62f4f6acd8e0d41b7ecdc115969b890a
  1 file changed, 2 insertions(+)
 
 diff --git a/linker/linker.cpp b/linker/linker.cpp
-index 643e6154b..c6efb6876 100644
+index d6a84fa28..e64081f90 100644
 --- a/linker/linker.cpp
 +++ b/linker/linker.cpp
-@@ -3328,6 +3328,7 @@ bool soinfo::link_image(const SymbolLookupList& lookup_list, soinfo* local_group
+@@ -3425,6 +3425,7 @@ bool soinfo::link_image(const SymbolLookupList& lookup_list, soinfo* local_group
  
  #if !defined(__LP64__)
    if (has_text_relocations) {
@@ -31,7 +31,7 @@ index 643e6154b..c6efb6876 100644
      // Fail if app is targeting M or above.
      int app_target_api_level = get_application_target_sdk_version();
      if (app_target_api_level >= 23) {
-@@ -3335,6 +3336,7 @@ bool soinfo::link_image(const SymbolLookupList& lookup_list, soinfo* local_group
+@@ -3432,6 +3433,7 @@ bool soinfo::link_image(const SymbolLookupList& lookup_list, soinfo* local_group
                       get_realpath(), kBionicChangesUrl);
        return false;
      }
@@ -40,5 +40,5 @@ index 643e6154b..c6efb6876 100644
      // phdr_table_protect_segments() after all of them are applied.
      DL_WARN_documented_change(23,
 -- 
-2.40.1
+2.50.1
 

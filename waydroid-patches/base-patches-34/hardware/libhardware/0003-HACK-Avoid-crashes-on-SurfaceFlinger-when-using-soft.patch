@@ -1,4 +1,4 @@
-From e696141fb11e6a3e1d1b48aa5aa896e6d6d6962c Mon Sep 17 00:00:00 2001
+From 34858e882ae260a1ea5ad3fb6c887ed44f6579df Mon Sep 17 00:00:00 2001
 From: Paulo Sergio Travaglia <pstglia@gmail.com>
 Date: Sun, 30 Oct 2016 21:37:16 -0200
 Subject: [PATCH 3/5] HACK - Avoid crashes on SurfaceFlinger when using
@@ -54,5 +54,5 @@ index ee3e40e0..7810f093 100644
      void *vaddr;
      return gralloc_map(module, handle, &vaddr);
 -- 
-2.43.2
+2.50.1
 

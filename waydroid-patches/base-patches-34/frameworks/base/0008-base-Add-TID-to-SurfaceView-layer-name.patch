@@ -1,0 +1,62 @@
+From 3e946796c54a8865c506c04e229c384afd7b51a2 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 12:12:41 +0000
+Subject: [PATCH 08/23] base: Add TID to SurfaceView layer name
+
+Change-Id: I56626bebb61f6bc188f9e520fa392bab50ce48ec
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ core/java/android/view/SurfaceControl.java | 3 +--
+ core/java/android/view/SurfaceView.java    | 8 ++++++--
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/core/java/android/view/SurfaceControl.java b/core/java/android/view/SurfaceControl.java
+index eff35c0c0f03..0227fa7f9aaa 100644
+--- a/core/java/android/view/SurfaceControl.java
++++ b/core/java/android/view/SurfaceControl.java
+@@ -1699,8 +1699,7 @@ public final class SurfaceControl implements Parcelable {
+ 
+     @Override
+     public String toString() {
+-        return "Surface(name=" + mName + ")/@0x" +
+-                Integer.toHexString(System.identityHashCode(this));
++        return mName;
+     }
+ 
+     /**
+diff --git a/core/java/android/view/SurfaceView.java b/core/java/android/view/SurfaceView.java
+index d494e2811747..1fd923019098 100644
+--- a/core/java/android/view/SurfaceView.java
++++ b/core/java/android/view/SurfaceView.java
+@@ -26,6 +26,7 @@ import android.annotation.FloatRange;
+ import android.annotation.IntDef;
+ import android.annotation.NonNull;
+ import android.annotation.Nullable;
++import android.app.Activity;
+ import android.compat.annotation.UnsupportedAppUsage;
+ import android.content.Context;
+ import android.content.res.CompatibilityInfo.Translator;
+@@ -1184,7 +1185,10 @@ public class SurfaceView extends View implements ViewRootImpl.SurfaceChangedCall
+                 final Transaction surfaceUpdateTransaction = new Transaction();
+                 if (creating) {
+                     updateOpaqueFlag();
+-                    final String name = "SurfaceView[" + viewRoot.getTitle().toString() + "]";
++                    String name = viewRoot.getTitle().toString();
++                    if (getContext() instanceof Activity) {
++                        name = String.format("TID:%d#", ((Activity)getContext()).getTaskId()) + name;
++                    }
+                     createBlastSurfaceControls(viewRoot, name, surfaceUpdateTransaction);
+                 } else if (mSurfaceControl == null) {
+                     return;
+@@ -1465,7 +1469,7 @@ public class SurfaceView extends View implements ViewRootImpl.SurfaceChangedCall
+ 
+         if (mBackgroundControl == null) {
+             mBackgroundControl = new SurfaceControl.Builder(mSurfaceSession)
+-                    .setName("Background for " + name)
++                    .setName(name + "$Background")
+                     .setLocalOwnerView(this)
+                     .setOpaque(true)
+                     .setColorLayer()
+-- 
+2.50.1
+

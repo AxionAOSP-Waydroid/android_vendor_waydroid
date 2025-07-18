@@ -1,21 +1,21 @@
-From 590c236b59cfa42cd4edf46bdba10d85b73ff150 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?=D0=90=D0=B7=D0=B0=D0=BB=D0=B8=D1=8F=20=D0=A1=D0=BC=D0=B0?=
- =?UTF-8?q?=D1=80=D0=B0=D0=B3=D0=B4=D0=BE=D0=B2=D0=B0?=
- <charming.flurry@yandex.ru>
-Date: Wed, 26 Jul 2023 15:24:18 +0000
-Subject: [PATCH] Patching ADBD in order to drop privileges unconditionally.
+From 3f21a64dc5ec66e480af48dbca12a40e6f4d92f4 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 14:29:27 +0000
+Subject: [PATCH 2/2] Patching ADBD in order to drop privileges
+ unconditionally.
 
 Change-Id: I038d96fe58a81dbbb56013df7010e80ee29b0d82
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
  daemon/main.cpp            | 5 +++++
  daemon/restart_service.cpp | 7 +++++++
  2 files changed, 12 insertions(+)
 
 diff --git a/daemon/main.cpp b/daemon/main.cpp
-index cc0aa2b81..aa368f6df 100644
+index 0d325c9b..c72006da 100644
 --- a/daemon/main.cpp
 +++ b/daemon/main.cpp
-@@ -64,6 +64,11 @@
+@@ -61,6 +61,11 @@
  static const char* root_seclabel = nullptr;
  
  static bool should_drop_privileges() {
@@ -28,7 +28,7 @@ index cc0aa2b81..aa368f6df 100644
      // ro.debuggable. In this context the names don't make the expected behavior
      // particularly obvious.
 diff --git a/daemon/restart_service.cpp b/daemon/restart_service.cpp
-index c942c1f23..cbac6fde8 100644
+index c942c1f2..cbac6fde 100644
 --- a/daemon/restart_service.cpp
 +++ b/daemon/restart_service.cpp
 @@ -34,6 +34,13 @@
@@ -46,5 +46,5 @@ index c942c1f23..cbac6fde8 100644
          WriteFdExactly(fd.get(), "adbd is already running as root\n");
          return;
 -- 
-2.41.0
+2.50.1
 

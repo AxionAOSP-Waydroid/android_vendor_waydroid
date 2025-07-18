@@ -1,22 +1,23 @@
-From fb5fc65f4c1e499174e43fe0ff57e5b46f8d8d93 Mon Sep 17 00:00:00 2001
-From: Tanuj Tekriwal <tanuj.tekriwal@intel.com>
-Date: Wed, 22 Sep 2021 18:21:16 +0530
-Subject: [PATCH] add namespace change for houdini
+From c6422dbc3ad46991ce1849187fd4e3115d98be14 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 15:12:51 +0000
+Subject: [PATCH 3/3] add namespace change for houdini
 
 Change-Id: I59b9af80d76dcbdc6d7216e7706755a13cd53464
 Signed-off-by: kexx <xiaox.ke@intel.com>
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
  contents/namespace/sphal.cc         | 6 ++++++
- contents/namespace/systemdefault.cc | 5 +++++
- 2 files changed, 11 insertions(+)
+ contents/namespace/systemdefault.cc | 6 ++++++
+ 2 files changed, 12 insertions(+)
 
 diff --git a/contents/namespace/sphal.cc b/contents/namespace/sphal.cc
-index b933041..7247257 100644
+index 926cdf1..5addbee 100644
 --- a/contents/namespace/sphal.cc
 +++ b/contents/namespace/sphal.cc
-@@ -64,6 +64,12 @@ Namespace BuildSphalNamespace([[maybe_unused]] const Context& ctx) {
-     }
-   }
+@@ -57,6 +57,12 @@ Namespace BuildSphalNamespace([[maybe_unused]] const Context& ctx) {
+   ns.AddPermittedPath("/vendor/odm/${LIB}");
+   ns.AddPermittedPath("/system/vendor/${LIB}");
  
 +  // libhoudini
 +  ns.AddSearchPath("/system/${LIB}/arm");
@@ -24,14 +25,14 @@ index b933041..7247257 100644
 +  ns.AddSearchPath("/system/${LIB}/arm64");
 +  ns.AddPermittedPath("/system/${LIB}/arm64");
 +
-   if (ctx.IsApexBinaryConfig() && !ctx.IsVndkAvailable()) {
-     // If device is legacy, let Sphal libraries access to system lib path for
-     // VNDK-SP libraries
+   // TODO(b/326839235) Remove access to data once renderscript is deprecated.
+   if (!android::linkerconfig::modules::IsVendorVndkVersionDefined()) {
+     ns.AddPermittedPath("/data");
 diff --git a/contents/namespace/systemdefault.cc b/contents/namespace/systemdefault.cc
-index 273679e..2bb0dfa 100644
+index 5928b98..1ffe256 100644
 --- a/contents/namespace/systemdefault.cc
 +++ b/contents/namespace/systemdefault.cc
-@@ -72,6 +72,11 @@ void SetupSystemPermittedPaths(Namespace* ns) {
+@@ -71,8 +71,14 @@ void SetupSystemPermittedPaths(Namespace* ns) {
        "/mnt/expand",
        "/apex/com.android.runtime/${LIB}/bionic",
        "/system/${LIB}/bootstrap",
@@ -42,7 +43,10 @@ index 273679e..2bb0dfa 100644
 +      "/system/${LIB}/arm64",
    };
  
++
    for (const std::string& path : permitted_paths) {
+     ns->AddPermittedPath(path);
+   }
 -- 
-2.48.1
+2.50.1
 

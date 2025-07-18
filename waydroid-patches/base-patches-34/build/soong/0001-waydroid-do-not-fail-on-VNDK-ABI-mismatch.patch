@@ -1,28 +1,26 @@
-From 04bea83a5789f415d9a2bb812edcae9d3545c793 Mon Sep 17 00:00:00 2001
-From: Erfan Abdi <erfangplus@gmail.com>
-Date: Sun, 2 May 2021 02:06:01 +0800
+From 537f6750095f95d4dc35b2ef58b593c2a2e626e2 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 11:14:45 +0000
 Subject: [PATCH] (waydroid) do not fail on VNDK ABI mismatch
 
-Change-Id: I439748c1e538aa5414a66799c6720f1775d34d04
+Change-Id: Ib94f254dd070ab4b8bbe6de96822a5fe452d49c0
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
- cc/builder.go | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ cc/library.go | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/cc/builder.go b/cc/builder.go
-index ea06839a9..e33f4703a 100644
---- a/cc/builder.go
-+++ b/cc/builder.go
-@@ -960,9 +960,7 @@ func sourceAbiDiff(ctx android.ModuleContext, inputDump android.Path, referenceD
- 			"-allow-unreferenced-elf-symbol-changes")
+diff --git a/cc/library.go b/cc/library.go
+index 222b38082..c306a1093 100644
+--- a/cc/library.go
++++ b/cc/library.go
+@@ -1415,6 +1415,7 @@ func (library *libraryDecorator) sourceAbiDiff(ctx android.ModuleContext, refere
+ 		extraFlags = append(extraFlags, "-allow-extensions")
  	}
- 
--	if exportedHeaderFlags == "" {
--		extraFlags = append(extraFlags, "-advice-only")
--	}
+ 	extraFlags = append(extraFlags, headerAbiChecker.Diff_flags...)
 +	extraFlags = append(extraFlags, "-advice-only")
  
- 	if isLlndk || isNdk {
- 		createReferenceDumpFlags = "--llndk"
+ 	library.sAbiDiff = append(
+ 		library.sAbiDiff,
 -- 
-2.39.1
+2.50.1
 

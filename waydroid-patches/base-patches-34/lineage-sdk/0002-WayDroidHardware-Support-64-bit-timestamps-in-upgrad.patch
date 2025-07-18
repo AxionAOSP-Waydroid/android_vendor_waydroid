@@ -1,7 +1,7 @@
-From 29d59c5775433a8ac5e1892e74791ed308d3c3e2 Mon Sep 17 00:00:00 2001
+From f99b0c6ddfb409b3fdfad74657a6961e005dda93 Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Wed, 6 Sep 2023 23:03:39 +0200
-Subject: [PATCH] WayDroidHardware: Support 64-bit timestamps in upgrade
+Subject: [PATCH 2/3] WayDroidHardware: Support 64-bit timestamps in upgrade
 
 32-bit timestamps will overflow in 2038
 
@@ -59,5 +59,5 @@ index 7d1b266b..ec7c8e11 100644
 +    void upgrade2(String system_zip, long system_time, String vendor_zip, long vendor_time);
  }
 -- 
-2.41.0
+2.50.1
 

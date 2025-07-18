@@ -1,0 +1,29 @@
+From e62f72b5c1617d54c4d63a8e7e3a35888ef6e6a8 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 12:27:21 +0000
+Subject: [PATCH 23/23] Enable client side shadows by default
+
+This seems to give us a very light shadow -- better than nothing.
+
+Change-Id: Ia3152429cbfefc85ae6909fcac5da3eb003539ef
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ core/java/com/android/internal/policy/PhoneWindow.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/java/com/android/internal/policy/PhoneWindow.java b/core/java/com/android/internal/policy/PhoneWindow.java
+index 0dd01e48db0a..de18b4080168 100644
+--- a/core/java/com/android/internal/policy/PhoneWindow.java
++++ b/core/java/com/android/internal/policy/PhoneWindow.java
+@@ -386,7 +386,7 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
+         super(context);
+         mLayoutInflater = LayoutInflater.from(context);
+         mRenderShadowsInCompositor = Settings.Global.getInt(context.getContentResolver(),
+-                DEVELOPMENT_RENDER_SHADOWS_IN_COMPOSITOR, 1) != 0;
++                DEVELOPMENT_RENDER_SHADOWS_IN_COMPOSITOR, 0) != 0;
+         mProxyOnBackInvokedDispatcher = new ProxyOnBackInvokedDispatcher(context);
+         mAllowFloatingWindowsFillScreen = context.getResources().getBoolean(
+                 com.android.internal.R.bool.config_allowFloatingWindowsFillScreen);
+-- 
+2.50.1
+

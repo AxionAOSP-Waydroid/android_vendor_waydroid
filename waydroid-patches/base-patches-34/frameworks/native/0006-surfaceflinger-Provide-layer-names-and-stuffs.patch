@@ -1,27 +1,28 @@
-From 2b22d2ce7078eec3c130128b5d5c484caad5b2d1 Mon Sep 17 00:00:00 2001
-From: Erfan Abdi <erfangplus@gmail.com>
-Date: Tue, 24 Aug 2021 22:45:23 +0430
-Subject: [PATCH] surfaceflinger: Provide layer names and stuffs
+From 16c8c8c99f616afd804d7413a0acb2b6987b63d0 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 13:33:49 +0000
+Subject: [PATCH 06/13] surfaceflinger: Provide layer names and stuffs
 
 Co-authored-by: Alessandro Astone <ales.astone@gmail.com>
 Change-Id: I06d399a1cbcac1a9c423e49b8ded24305b3c960e
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
  services/surfaceflinger/Android.bp            |  3 +
  .../compositionengine/impl/OutputLayer.h      |  3 +-
- .../CompositionEngine/src/OutputLayer.cpp     | 16 +++++-
+ .../CompositionEngine/src/OutputLayer.cpp     | 17 +++++-
  .../DisplayHardware/AidlComposerHal.h         |  4 ++
  .../DisplayHardware/ComposerHal.h             |  4 ++
  .../surfaceflinger/DisplayHardware/HWC2.cpp   | 12 ++++
  .../surfaceflinger/DisplayHardware/HWC2.h     |  8 +++
  .../DisplayHardware/HidlComposerHal.cpp       | 55 +++++++++++++++++++
  .../DisplayHardware/HidlComposerHal.h         | 13 +++++
- 9 files changed, 115 insertions(+), 3 deletions(-)
+ 9 files changed, 116 insertions(+), 3 deletions(-)
 
 diff --git a/services/surfaceflinger/Android.bp b/services/surfaceflinger/Android.bp
-index 7548380a58..0cf45373ba 100644
+index d14ad417d5..507ffe8c41 100644
 --- a/services/surfaceflinger/Android.bp
 +++ b/services/surfaceflinger/Android.bp
-@@ -72,6 +72,9 @@ cc_defaults {
+@@ -87,6 +87,9 @@ cc_defaults {
          "libutils",
          "libSurfaceFlingerProp",
          "server_configurable_flags",
@@ -32,10 +33,10 @@ index 7548380a58..0cf45373ba 100644
      static_libs: [
          "libaidlcommonsupport",
 diff --git a/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/OutputLayer.h b/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/OutputLayer.h
-index ecd432f629..4b9535e428 100644
+index f383392e55..b02b251bc3 100644
 --- a/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/OutputLayer.h
 +++ b/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/OutputLayer.h
-@@ -72,7 +72,8 @@ protected:
+@@ -76,7 +76,8 @@ protected:
  private:
      Rect calculateInitialCrop() const;
      void writeOutputDependentGeometryStateToHWC(
@@ -46,10 +47,10 @@ index ecd432f629..4b9535e428 100644
                                                    bool skipLayer);
      void writeOutputDependentPerFrameStateToHWC(HWC2::Layer*);
 diff --git a/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp b/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
-index 2129dfed29..f38c6f41e7 100644
+index 0220649cfa..6b3452959d 100644
 --- a/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
 +++ b/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
-@@ -388,7 +388,8 @@ void OutputLayer::writeStateToHWC(bool includeGeometry, bool skipLayer, uint32_t
+@@ -404,7 +404,8 @@ void OutputLayer::writeStateToHWC(bool includeGeometry, bool skipLayer, uint32_t
              state.overrideInfo.buffer != nullptr || isPeekingThrough || zIsOverridden;
      const bool prevOverridden = state.hwc->stateOverridden;
      if (isOverridden || prevOverridden || skipLayer || includeGeometry) {
@@ -59,7 +60,7 @@ index 2129dfed29..f38c6f41e7 100644
          writeOutputIndependentGeometryStateToHWC(hwcLayer.get(), *outputIndependentState,
                                                   skipLayer);
      }
-@@ -410,7 +411,7 @@ void OutputLayer::writeStateToHWC(bool includeGeometry, bool skipLayer, uint32_t
+@@ -426,7 +427,7 @@ void OutputLayer::writeStateToHWC(bool includeGeometry, bool skipLayer, uint32_t
  
  void OutputLayer::writeOutputDependentGeometryStateToHWC(HWC2::Layer* hwcLayer,
                                                           Composition requestedCompositionType,
@@ -68,10 +69,11 @@ index 2129dfed29..f38c6f41e7 100644
      const auto& outputDependentState = getState();
  
      Rect displayFrame = outputDependentState.displayFrame;
-@@ -457,6 +458,17 @@ void OutputLayer::writeOutputDependentGeometryStateToHWC(HWC2::Layer* hwcLayer,
+@@ -477,6 +478,18 @@ void OutputLayer::writeOutputDependentGeometryStateToHWC(HWC2::Layer* hwcLayer,
                to_string(error).c_str(), static_cast<int32_t>(error));
      }
  
++     
 +    if (auto error = hwcLayer->setLayerHandleInfo(buffer); error != hal::Error::NONE) {
 +        ALOGE("[%s] Failed to set layer buffer info: %s (%d)", getLayerFE().getDebugName(),
 +              to_string(error).c_str(), static_cast<int32_t>(error));
@@ -87,10 +89,10 @@ index 2129dfed29..f38c6f41e7 100644
      const auto bufferTransform = (requestedCompositionType != Composition::SOLID_COLOR &&
                                    getState().overrideInfo.buffer == nullptr)
 diff --git a/services/surfaceflinger/DisplayHardware/AidlComposerHal.h b/services/surfaceflinger/DisplayHardware/AidlComposerHal.h
-index 18d2242c7e..b08bf2906d 100644
+index ea0e53a202..b9ea2270e8 100644
 --- a/services/surfaceflinger/DisplayHardware/AidlComposerHal.h
 +++ b/services/surfaceflinger/DisplayHardware/AidlComposerHal.h
-@@ -159,6 +159,10 @@ public:
+@@ -170,6 +170,10 @@ public:
                                  const std::vector<IComposerClient::Rect>& visible) override;
      Error setLayerZOrder(Display display, Layer layer, uint32_t z) override;
  
@@ -102,10 +104,10 @@ index 18d2242c7e..b08bf2906d 100644
      Error setLayerPerFrameMetadata(
              Display display, Layer layer,
 diff --git a/services/surfaceflinger/DisplayHardware/ComposerHal.h b/services/surfaceflinger/DisplayHardware/ComposerHal.h
-index d266d942fb..ef9ddffb76 100644
+index bc067a0e5d..1dbd804937 100644
 --- a/services/surfaceflinger/DisplayHardware/ComposerHal.h
 +++ b/services/surfaceflinger/DisplayHardware/ComposerHal.h
-@@ -240,6 +240,10 @@ public:
+@@ -252,6 +252,10 @@ public:
      virtual Error setDisplayBrightness(Display display, float brightness, float brightnessNits,
                                         const DisplayBrightnessOptions& options) = 0;
  
@@ -117,10 +119,10 @@ index d266d942fb..ef9ddffb76 100644
      virtual Error getDisplayCapabilities(Display display,
                                           std::vector<V3_0::DisplayCapability>* outCapabilities) = 0;
 diff --git a/services/surfaceflinger/DisplayHardware/HWC2.cpp b/services/surfaceflinger/DisplayHardware/HWC2.cpp
-index c52e96d146..faee7277b6 100644
+index 84f668d9df..6197e3f5a9 100644
 --- a/services/surfaceflinger/DisplayHardware/HWC2.cpp
 +++ b/services/surfaceflinger/DisplayHardware/HWC2.cpp
-@@ -988,6 +988,18 @@ Error Layer::setBlockingRegion(const Region& region) {
+@@ -1030,6 +1030,18 @@ Error Layer::setBlockingRegion(const Region& region) {
      return static_cast<Error>(intError);
  }
  
@@ -140,10 +142,10 @@ index c52e96d146..faee7277b6 100644
  } // namespace HWC2
  } // namespace android
 diff --git a/services/surfaceflinger/DisplayHardware/HWC2.h b/services/surfaceflinger/DisplayHardware/HWC2.h
-index 24aef9b73c..9a7865398a 100644
+index de044e0b76..7c6e272a05 100644
 --- a/services/surfaceflinger/DisplayHardware/HWC2.h
 +++ b/services/surfaceflinger/DisplayHardware/HWC2.h
-@@ -325,6 +325,10 @@ public:
+@@ -345,6 +345,10 @@ public:
      // Composer HAL 2.3
      [[nodiscard]] virtual hal::Error setColorTransform(const android::mat4& matrix) = 0;
  
@@ -154,7 +156,7 @@ index 24aef9b73c..9a7865398a 100644
      // Composer HAL 2.4
      [[nodiscard]] virtual hal::Error setLayerGenericMetadata(const std::string& name,
                                                               bool mandatory,
-@@ -374,6 +378,10 @@ public:
+@@ -396,6 +400,10 @@ public:
      // Composer HAL 2.3
      hal::Error setColorTransform(const android::mat4& matrix) override;
  
@@ -166,11 +168,11 @@ index 24aef9b73c..9a7865398a 100644
      hal::Error setLayerGenericMetadata(const std::string& name, bool mandatory,
                                         const std::vector<uint8_t>& value) override;
 diff --git a/services/surfaceflinger/DisplayHardware/HidlComposerHal.cpp b/services/surfaceflinger/DisplayHardware/HidlComposerHal.cpp
-index 2597ae6091..949bf02fd6 100644
+index 12ab2c284a..0a34bf1403 100644
 --- a/services/surfaceflinger/DisplayHardware/HidlComposerHal.cpp
 +++ b/services/surfaceflinger/DisplayHardware/HidlComposerHal.cpp
-@@ -190,6 +190,10 @@ std::vector<To> translate(const hidl_vec<From>& in) {
- HidlComposer::HidlComposer(const std::string& serviceName) : mWriter(kWriterInitialSize) {
+@@ -218,6 +218,10 @@ HidlComposer::HidlComposer(const std::string& serviceName)
+       : mClearSlotBuffer(allocateClearSlotBuffer()), mWriter(kWriterInitialSize) {
      mComposer = V2_1::IComposer::getService(serviceName);
  
 +    mWaydroidDisplay = V1_0::IWaydroidDisplay::getService();
@@ -180,7 +182,7 @@ index 2597ae6091..949bf02fd6 100644
      if (mComposer == nullptr) {
          LOG_ALWAYS_FATAL("failed to get hwcomposer service");
      }
-@@ -349,6 +353,7 @@ Error HidlComposer::createLayer(Display display, Layer* outLayer) {
+@@ -384,6 +388,7 @@ Error HidlComposer::createLayer(Display display, Layer* outLayer) {
  }
  
  Error HidlComposer::destroyLayer(Display display, Layer layer) {
@@ -188,7 +190,7 @@ index 2597ae6091..949bf02fd6 100644
      auto ret = mClient->destroyLayer(display, layer);
      return unwrapRet(ret);
  }
-@@ -573,6 +578,10 @@ Error HidlComposer::setClientTarget(Display display, uint32_t slot, const sp<Gra
+@@ -615,6 +620,10 @@ Error HidlComposer::setClientTarget(Display display, uint32_t slot, const sp<Gra
  
      const native_handle_t* handle = nullptr;
      if (target.get()) {
@@ -199,7 +201,7 @@ index 2597ae6091..949bf02fd6 100644
          handle = target->getNativeBuffer()->handle;
      }
  
-@@ -811,6 +820,7 @@ Error HidlComposer::setLayerZOrder(Display display, Layer layer, uint32_t z) {
+@@ -885,6 +894,7 @@ Error HidlComposer::setLayerZOrder(Display display, Layer layer, uint32_t z) {
      mWriter.selectDisplay(display);
      mWriter.selectLayer(layer);
      mWriter.setLayerZOrder(z);
@@ -207,7 +209,7 @@ index 2597ae6091..949bf02fd6 100644
      return Error::NONE;
  }
  
-@@ -1265,6 +1275,15 @@ V2_4::Error HidlComposer::setLayerGenericMetadata(Display display, Layer layer,
+@@ -1339,6 +1349,15 @@ V2_4::Error HidlComposer::setLayerGenericMetadata(Display display, Layer layer,
                                                    const std::vector<uint8_t>& value) {
      using Error = V2_4::Error;
      if (!mClient_2_4) {
@@ -223,7 +225,7 @@ index 2597ae6091..949bf02fd6 100644
          return Error::UNSUPPORTED;
      }
      mWriter.selectDisplay(display);
-@@ -1277,6 +1296,10 @@ V2_4::Error HidlComposer::getLayerGenericMetadataKeys(
+@@ -1351,6 +1370,10 @@ V2_4::Error HidlComposer::getLayerGenericMetadataKeys(
          std::vector<IComposerClient::LayerGenericMetadataKey>* outKeys) {
      using Error = V2_4::Error;
      if (!mClient_2_4) {
@@ -234,10 +236,11 @@ index 2597ae6091..949bf02fd6 100644
          return Error::UNSUPPORTED;
      }
      Error error = kDefaultError_2_4;
-@@ -1352,6 +1375,38 @@ void HidlComposer::registerCallback(ComposerCallback& callback) {
+@@ -1441,6 +1464,38 @@ void HidlComposer::registerCallback(ComposerCallback& callback) {
+ 
      registerCallback(sp<ComposerCallbackBridge>::make(callback, vsyncSwitchingSupported));
  }
- 
++ 
 +Error HidlComposer::setLayerName(Display, Layer layer, std::string name) {
 +    if (!mWaydroidDisplay) {
 +        return Error::UNSUPPORTED;
@@ -269,12 +272,11 @@ index 2597ae6091..949bf02fd6 100644
 +    }
 +    return Error::NONE;
 +}
-+
- CommandReader::~CommandReader() {
-     resetData();
- }
+ 
+ void HidlComposer::onHotplugConnect(Display) {}
+ void HidlComposer::onHotplugDisconnect(Display) {}
 diff --git a/services/surfaceflinger/DisplayHardware/HidlComposerHal.h b/services/surfaceflinger/DisplayHardware/HidlComposerHal.h
-index d0d3c2e6d7..ad66985394 100644
+index d78bfb7c6b..2445055a6b 100644
 --- a/services/surfaceflinger/DisplayHardware/HidlComposerHal.h
 +++ b/services/surfaceflinger/DisplayHardware/HidlComposerHal.h
 @@ -29,6 +29,7 @@
@@ -293,7 +295,7 @@ index d0d3c2e6d7..ad66985394 100644
  
  namespace V2_1 = hardware::graphics::composer::V2_1;
  namespace V2_2 = hardware::graphics::composer::V2_2;
-@@ -268,6 +270,10 @@ public:
+@@ -273,6 +275,10 @@ public:
                                  const std::vector<IComposerClient::Rect>& visible) override;
      Error setLayerZOrder(Display display, Layer layer, uint32_t z) override;
  
@@ -304,20 +306,20 @@ index d0d3c2e6d7..ad66985394 100644
      // Composer HAL 2.2
      Error setLayerPerFrameMetadata(
              Display display, Layer layer,
-@@ -359,6 +365,13 @@ private:
-     sp<V2_3::IComposerClient> mClient_2_3;
-     sp<IComposerClient> mClient_2_4;
+@@ -375,6 +381,13 @@ private:
  
+     // Buffer slots for layers are cleared by setting the slot buffer to this buffer.
+     sp<GraphicBuffer> mClearSlotBuffer;
++ 
 +    sp<V1_0::IWaydroidDisplay> mWaydroidDisplay;
 +    sp<V1_1::IWaydroidDisplay> mWaydroidDisplay_1;
 +    sp<V1_2::IWaydroidDisplay> mWaydroidDisplay_2;
 +    std::map<Layer, int32_t> mLayersZMap;
 +    std::map<int32_t, std::string> mLayersNameMap;
 +    std::map<int32_t, const native_handle_t*> mLayersHandleMap;
-+
+ 
      // 64KiB minus a small space for metadata such as read/write pointers
      static constexpr size_t kWriterInitialSize = 64 * 1024 / sizeof(uint32_t) - 16;
-     // Max number of buffers that may be cached for a given layer
 -- 
-2.49.0
+2.50.1
 

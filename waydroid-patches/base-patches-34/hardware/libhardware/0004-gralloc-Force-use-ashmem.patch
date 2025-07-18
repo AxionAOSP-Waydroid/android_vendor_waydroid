@@ -1,4 +1,4 @@
-From d423230c3b337aef0f991ae1a68c79cc125f300b Mon Sep 17 00:00:00 2001
+From 6904438cf8dbd6c3bcd674bc08a89fcfb23533ba Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Sun, 26 Sep 2021 04:50:03 +0330
 Subject: [PATCH 4/5] gralloc: Force use ashmem
@@ -8,10 +8,10 @@ Subject: [PATCH 4/5] gralloc: Force use ashmem
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/modules/gralloc/gralloc.cpp b/modules/gralloc/gralloc.cpp
-index 87bda975..e9a964e7 100644
+index f7ea01cf..69c6cd93 100644
 --- a/modules/gralloc/gralloc.cpp
 +++ b/modules/gralloc/gralloc.cpp
-@@ -235,7 +235,7 @@ static int gralloc_alloc(alloc_device_t* dev,
+@@ -239,7 +239,7 @@ static int gralloc_alloc(alloc_device_t* dev,
      size_t size = align(height, tileHeight) * stride * bytesPerPixel + 4;
  
      int err;
@@ -20,7 +20,7 @@ index 87bda975..e9a964e7 100644
          err = gralloc_alloc_framebuffer(dev, size, format, usage, pHandle);
      } else {
          err = gralloc_alloc_buffer(dev, size, usage, pHandle);
-@@ -292,7 +292,7 @@ int gralloc_device_open(const hw_module_t* module, const char* name,
+@@ -296,7 +296,7 @@ int gralloc_device_open(const hw_module_t* module, const char* name,
          hw_device_t** device)
  {
      int status = -EINVAL;
@@ -30,5 +30,5 @@ index 87bda975..e9a964e7 100644
          dev = (gralloc_context_t*)malloc(sizeof(*dev));
  
 -- 
-2.43.2
+2.50.1
 

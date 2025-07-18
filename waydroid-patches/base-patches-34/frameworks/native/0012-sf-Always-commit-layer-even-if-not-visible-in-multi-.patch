@@ -1,7 +1,7 @@
-From abf8dbed2c5495f025718c505fa43f1214b725d1 Mon Sep 17 00:00:00 2001
+From 0686e05e75a6e344daefec70253ccee8bee6589c Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Mon, 27 Jan 2025 00:22:14 +0100
-Subject: [PATCH 12/12] sf: Always commit layer even if not visible in
+Subject: [PATCH 12/13] sf: Always commit layer even if not visible in
  multi-windows mode
 
 Change-Id: I4f3a8930181db093db82c84e72bb5bcbbe41f577
@@ -11,7 +11,7 @@ Change-Id: I4f3a8930181db093db82c84e72bb5bcbbe41f577
  2 files changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/Output.h b/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/Output.h
-index 428c19fe02..cc1285dbb4 100644
+index 911d67b5ed..c09b7db2aa 100644
 --- a/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/Output.h
 +++ b/services/surfaceflinger/CompositionEngine/include/compositionengine/impl/Output.h
 @@ -16,6 +16,8 @@
@@ -31,7 +31,7 @@ index 428c19fe02..cc1285dbb4 100644
  
  namespace android::compositionengine::impl {
  
-@@ -175,6 +178,8 @@ private:
+@@ -188,6 +191,8 @@ private:
  
      // Whether the content must be recomposed this frame.
      bool mMustRecompose = false;
@@ -41,10 +41,10 @@ index 428c19fe02..cc1285dbb4 100644
  
  // This template factory function standardizes the implementation details of the
 diff --git a/services/surfaceflinger/CompositionEngine/src/Output.cpp b/services/surfaceflinger/CompositionEngine/src/Output.cpp
-index 1598fd135a..babf4c6d32 100644
+index 1d28d1ea12..1f895f2af4 100644
 --- a/services/surfaceflinger/CompositionEngine/src/Output.cpp
 +++ b/services/surfaceflinger/CompositionEngine/src/Output.cpp
-@@ -637,7 +637,7 @@ void Output::ensureOutputLayerIfVisible(sp<compositionengine::LayerFE>& layerFE,
+@@ -705,7 +705,7 @@ void Output::ensureOutputLayerIfVisible(sp<compositionengine::LayerFE>& layerFE,
      // subtract the opaque region covered by the layers above us
      visibleRegion.subtractSelf(coverage.aboveOpaqueLayers);
  
@@ -53,7 +53,7 @@ index 1598fd135a..babf4c6d32 100644
          return;
      }
  
-@@ -696,7 +696,7 @@ void Output::ensureOutputLayerIfVisible(sp<compositionengine::LayerFE>& layerFE,
+@@ -764,7 +764,7 @@ void Output::ensureOutputLayerIfVisible(sp<compositionengine::LayerFE>& layerFE,
      const auto& outputState = getState();
      Region drawRegion(outputState.transform.transform(visibleNonTransparentRegion));
      drawRegion.andSelf(outputState.displaySpace.getBoundsAsRect());
@@ -63,5 +63,5 @@ index 1598fd135a..babf4c6d32 100644
      }
  
 -- 
-2.48.1
+2.50.1
 

@@ -1,38 +1,17 @@
-From 4be82f8d78800285fcb19eeb9cd483c5634d49d4 Mon Sep 17 00:00:00 2001
-From: Erfan Abdi <erfangplus@gmail.com>
-Date: Mon, 3 May 2021 06:24:52 +0430
+From 694a9a9a799ef703585bfeac35a1c6e0d03f264d Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 11:28:08 +0000
 Subject: [PATCH 03/17] media: Use vendor_extra seccomp minijail
 
-Change-Id: I2e668802d266ef2427ef86965be4ae90ac96a304
+Change-Id: Ieb3b0bc91fdfbfb98e1f88c0221f143c1b1e6149
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
- services/mediacodec/main_codecservice.cpp         | 4 +++-
  services/mediacodec/main_swcodecservice.cpp       | 4 +++-
  services/mediaextractor/main_extractorservice.cpp | 4 +++-
- 3 files changed, 9 insertions(+), 3 deletions(-)
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/services/mediacodec/main_codecservice.cpp b/services/mediacodec/main_codecservice.cpp
-index 6a82b1b6b8..d5e26776cc 100644
---- a/services/mediacodec/main_codecservice.cpp
-+++ b/services/mediacodec/main_codecservice.cpp
-@@ -35,13 +35,15 @@ static const char kSystemSeccompPolicyPath[] =
-         "/system/etc/seccomp_policy/mediacodec.policy";
- static const char kVendorSeccompPolicyPath[] =
-         "/vendor/etc/seccomp_policy/mediacodec.policy";
-+static const char kVendorExtraSeccompPolicyPath[] =
-+        "/vendor_extra/etc/seccomp_policy/mediacodec.policy";
- 
- int main(int argc __unused, char** argv)
- {
-     strcpy(argv[0], "media.codec");
-     LOG(INFO) << "mediacodecservice starting";
-     signal(SIGPIPE, SIG_IGN);
--    SetUpMinijail(kSystemSeccompPolicyPath, kVendorSeccompPolicyPath);
-+    SetUpMinijailList(kSystemSeccompPolicyPath, {kVendorSeccompPolicyPath, kVendorExtraSeccompPolicyPath});
- 
-     android::ProcessState::initWithDriver("/dev/vndbinder");
-     android::ProcessState::self()->startThreadPool();
 diff --git a/services/mediacodec/main_swcodecservice.cpp b/services/mediacodec/main_swcodecservice.cpp
-index d91b7887a4..e645eebe94 100644
+index 9aa5d3df73..e05473810a 100644
 --- a/services/mediacodec/main_swcodecservice.cpp
 +++ b/services/mediacodec/main_swcodecservice.cpp
 @@ -30,6 +30,8 @@ static const char kSystemSeccompPolicyPath[] =
@@ -52,7 +31,7 @@ index d91b7887a4..e645eebe94 100644
 +    SetUpMinijailList(kSystemSeccompPolicyPath, {kVendorSeccompPolicyPath, kVendorExtraSeccompPolicyPath});
      strcpy(argv[0], "media.swcodec");
  
-     ::android::hardware::configureRpcThreadpool(64, false);
+     RegisterCodecServices();
 diff --git a/services/mediaextractor/main_extractorservice.cpp b/services/mediaextractor/main_extractorservice.cpp
 index 10b81356d1..7cca2afadf 100644
 --- a/services/mediaextractor/main_extractorservice.cpp
@@ -76,5 +55,5 @@ index 10b81356d1..7cca2afadf 100644
      strcpy(argv[0], "media.extractor");
      sp<ProcessState> proc(ProcessState::self());
 -- 
-2.49.0
+2.50.1
 

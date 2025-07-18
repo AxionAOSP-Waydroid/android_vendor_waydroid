@@ -1,7 +1,7 @@
-From 47947fff7be34ffba6b790dab21b90b565c68bf9 Mon Sep 17 00:00:00 2001
+From fe71dd32a81cd5697a0426573ac00f261f3def74 Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Wed, 25 Aug 2021 23:15:59 +0800
-Subject: [PATCH 05/13] init: Define "host" user
+Subject: [PATCH 05/16] init: Define "host" user
 
 Change-Id: I6df4fcbc4af48c51c385f8413855f74afc146a45
 ---
@@ -9,10 +9,10 @@ Change-Id: I6df4fcbc4af48c51c385f8413855f74afc146a45
  1 file changed, 4 insertions(+)
 
 diff --git a/init/util.cpp b/init/util.cpp
-index 14b8b506e..d17613a08 100644
+index 7325ade609..06fe9c5d2a 100644
 --- a/init/util.cpp
 +++ b/init/util.cpp
-@@ -66,6 +66,10 @@ void (*trigger_shutdown)(const std::string& command) = nullptr;
+@@ -71,6 +71,10 @@ void (*trigger_shutdown)(const std::string& command) = nullptr;
  // DecodeUid() - decodes and returns the given string, which can be either the
  // numeric or name representation, into the integer uid or gid.
  Result<uid_t> DecodeUid(const std::string& name) {
@@ -24,5 +24,5 @@ index 14b8b506e..d17613a08 100644
          passwd* pwd = getpwnam(name.c_str());
          if (!pwd) return ErrnoError() << "getpwnam failed";
 -- 
-2.48.1
+2.50.1
 

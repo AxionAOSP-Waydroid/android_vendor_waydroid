@@ -1,7 +1,7 @@
-From c9ec389e1e1f84ba05d8899169e483b1c3d4027b Mon Sep 17 00:00:00 2001
+From e57a953ce0e85efd05c18f80d5a49d3cd382a3a4 Mon Sep 17 00:00:00 2001
 From: Asriel Dreemurr <asriel.danctnix@gmail.com>
 Date: Wed, 11 Nov 2020 08:08:51 +0700
-Subject: [PATCH 02/13] (waydroid) init: modify mount_all to skip mounts and
+Subject: [PATCH 02/16] (waydroid) init: modify mount_all to skip mounts and
  trigger nonencrypted state
 
 Change-Id: Iae8cffa6aeb2d56f35a51f0e9f52fd92402c43e9
@@ -11,10 +11,10 @@ Change-Id: Iae8cffa6aeb2d56f35a51f0e9f52fd92402c43e9
  2 files changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/init/builtins.cpp b/init/builtins.cpp
-index 01db4f5da..550621208 100644
+index a95a4a315b..74ebbd8b9c 100644
 --- a/init/builtins.cpp
 +++ b/init/builtins.cpp
-@@ -650,7 +650,8 @@ static Result<void> do_mount_all(const BuiltinArguments& args) {
+@@ -633,7 +633,8 @@ static Result<void> do_mount_all(const BuiltinArguments& args) {
      std::string prop_name = "ro.boottime.init.mount_all."s + prop_post_fix;
      android::base::Timer t;
  
@@ -24,7 +24,7 @@ index 01db4f5da..550621208 100644
      if (mount_all->fstab_path.empty()) {
          if (!ReadDefaultFstab(&fstab)) {
              return Error() << "Could not read default fstab";
-@@ -659,15 +660,18 @@ static Result<void> do_mount_all(const BuiltinArguments& args) {
+@@ -642,15 +643,18 @@ static Result<void> do_mount_all(const BuiltinArguments& args) {
          if (!ReadFstabFromFile(mount_all->fstab_path, &fstab)) {
              return Error() << "Could not read fstab";
          }
@@ -46,10 +46,10 @@ index 01db4f5da..550621208 100644
          // This call to fs_mgr_mount_all mounted userdata. Keep the result in
          // order for userspace reboot to correctly remount userdata.
 diff --git a/rootdir/init.rc b/rootdir/init.rc
-index 2b53d883e..19c5f8853 100644
+index 92e8f27ba8..513c10fd34 100644
 --- a/rootdir/init.rc
 +++ b/rootdir/init.rc
-@@ -547,6 +547,10 @@ on late-init
+@@ -563,6 +563,10 @@ on late-init
      trigger early-boot
      trigger boot
  
@@ -61,5 +61,5 @@ index 2b53d883e..19c5f8853 100644
      # Once metadata has been mounted, we'll need vold to deal with userdata checkpointing
      start vold
 -- 
-2.48.1
+2.50.1
 

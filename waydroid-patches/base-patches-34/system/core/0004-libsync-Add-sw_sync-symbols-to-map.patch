@@ -1,7 +1,7 @@
-From d1b08ae28dc114f81519a9337f2116846ff02e85 Mon Sep 17 00:00:00 2001
+From 7e474da3ae2d135d02d7060ee8549e4d6fe5b863 Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Sat, 1 May 2021 22:48:25 +0800
-Subject: [PATCH 04/13] libsync: Add sw_sync symbols to map
+Subject: [PATCH 04/16] libsync: Add sw_sync symbols to map
 
 Change-Id: I82559f4681e2afb75001130315c5bf419303667a
 ---
@@ -9,7 +9,7 @@ Change-Id: I82559f4681e2afb75001130315c5bf419303667a
  1 file changed, 3 insertions(+)
 
 diff --git a/libsync/libsync.map.txt b/libsync/libsync.map.txt
-index aac6b570f..c2126e224 100644
+index 32df91e13f..d9369a0d3c 100644
 --- a/libsync/libsync.map.txt
 +++ b/libsync/libsync.map.txt
 @@ -23,6 +23,9 @@ LIBSYNC {
@@ -23,5 +23,5 @@ index aac6b570f..c2126e224 100644
      *;
  };
 -- 
-2.48.1
+2.50.1
 

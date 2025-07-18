@@ -1,29 +1,32 @@
-From 858b877d767106e9c526bf73741be55ddce21cc8 Mon Sep 17 00:00:00 2001
-From: Erfan Abdi <erfangplus@gmail.com>
-Date: Mon, 14 Mar 2022 23:02:05 +0000
-Subject: [PATCH 10/12] GraphicBufferMapper: Skip buffer validation
+From 7b26c151a5940d8df9dd87e2451d1be1f939ce04 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 13:44:18 +0000
+Subject: [PATCH 10/13] GraphicBufferMapper: Skip buffer validation
 
 Change-Id: Ia7580cec2e4c89f8de7768361ad9852374991fda
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
 ---
- libs/ui/GraphicBufferMapper.cpp | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ libs/ui/GraphicBufferMapper.cpp | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/libs/ui/GraphicBufferMapper.cpp b/libs/ui/GraphicBufferMapper.cpp
-index a98e697eb1..8e06f0e201 100644
+index b6ab2f5a47..8d8e961402 100644
 --- a/libs/ui/GraphicBufferMapper.cpp
 +++ b/libs/ui/GraphicBufferMapper.cpp
-@@ -83,8 +83,8 @@ void GraphicBufferMapper::dumpBufferToSystemLog(buffer_handle_t bufferHandle, bo
+@@ -93,9 +93,9 @@ void GraphicBufferMapper::dumpBufferToSystemLog(buffer_handle_t bufferHandle, bo
+     ALOGD("%s", s.c_str());
  }
  
- status_t GraphicBufferMapper::importBuffer(buffer_handle_t rawHandle,
--        uint32_t width, uint32_t height, uint32_t layerCount,
--        PixelFormat format, uint64_t usage, uint32_t stride,
-+        __attribute__ ((unused)) uint32_t width, __attribute__ ((unused)) uint32_t height, __attribute__ ((unused)) uint32_t layerCount,
-+        __attribute__ ((unused)) PixelFormat format, __attribute__ ((unused)) uint64_t usage, __attribute__ ((unused)) uint32_t stride,
-         buffer_handle_t* outHandle)
- {
+-status_t GraphicBufferMapper::importBuffer(const native_handle_t* rawHandle, uint32_t width,
+-                                           uint32_t height, uint32_t layerCount, PixelFormat format,
+-                                           uint64_t usage, uint32_t stride,
++status_t GraphicBufferMapper::importBuffer(const native_handle_t* rawHandle, __attribute__ ((unused)) uint32_t width,
++                                           __attribute__ ((unused)) uint32_t height, __attribute__ ((unused)) uint32_t layerCount, __attribute__ ((unused)) PixelFormat format,
++                                           __attribute__ ((unused)) uint64_t usage, __attribute__ ((unused)) uint32_t stride,
+                                            buffer_handle_t* outHandle) {
      ATRACE_CALL();
-@@ -96,13 +96,13 @@ status_t GraphicBufferMapper::importBuffer(buffer_handle_t rawHandle,
+ 
+@@ -106,13 +106,13 @@ status_t GraphicBufferMapper::importBuffer(const native_handle_t* rawHandle, uin
          return error;
      }
  
@@ -40,5 +43,5 @@ index a98e697eb1..8e06f0e201 100644
      *outHandle = bufferHandle;
  
 -- 
-2.48.1
+2.50.1
 

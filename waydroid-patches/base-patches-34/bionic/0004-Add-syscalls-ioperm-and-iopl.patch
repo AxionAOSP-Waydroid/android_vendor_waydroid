@@ -1,7 +1,7 @@
-From 8070bd599bd798d73ca13c7c6689000df86f0943 Mon Sep 17 00:00:00 2001
+From ea4b0ccdc8984e1179a20d2b48bb3f0afad47c75 Mon Sep 17 00:00:00 2001
 From: Chih-Wei Huang <cwhuang@linux.org.tw>
 Date: Wed, 24 Aug 2016 22:58:24 +0800
-Subject: [PATCH 4/7] Add syscalls ioperm and iopl
+Subject: [PATCH 4/6] Add syscalls ioperm and iopl
 
 ---
  libc/SYSCALLS.TXT                  |  2 ++
@@ -17,10 +17,10 @@ Subject: [PATCH 4/7] Add syscalls ioperm and iopl
  create mode 100644 libc/arch-x86_64/syscalls/iopl.S
 
 diff --git a/libc/SYSCALLS.TXT b/libc/SYSCALLS.TXT
-index a09c614e6..65b17cf79 100644
+index 0db5d79aa..70453e456 100644
 --- a/libc/SYSCALLS.TXT
 +++ b/libc/SYSCALLS.TXT
-@@ -353,6 +353,8 @@ int     cacheflush:__ARM_NR_cacheflush(long start, long end, long flags)  arm
+@@ -361,6 +361,8 @@ int __riscv_flush_icache:riscv_flush_icache(void*, void*, unsigned long) riscv64
  
  # x86-specific
  int     __set_thread_area:set_thread_area(void*) x86
@@ -152,7 +152,7 @@ index 000000000..85f82de89
 +    ret
 +END(iopl)
 diff --git a/libc/libc.map.txt b/libc/libc.map.txt
-index 7397b687c..3619b968b 100644
+index 2c8ec0796..c7f85d8d3 100644
 --- a/libc/libc.map.txt
 +++ b/libc/libc.map.txt
 @@ -522,6 +522,8 @@ LIBC {
@@ -165,5 +165,5 @@ index 7397b687c..3619b968b 100644
      isalnum_l; # introduced=21
      isalpha;
 -- 
-2.40.1
+2.50.1
 

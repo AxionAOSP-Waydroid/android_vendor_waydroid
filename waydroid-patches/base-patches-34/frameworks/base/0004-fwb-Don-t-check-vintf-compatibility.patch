@@ -1,0 +1,27 @@
+From 84c4407216bc6c3fc0031e3dcd2c0a54db4d2055 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 11:46:57 +0000
+Subject: [PATCH 04/23] fwb: Don't check vintf compatibility
+
+Change-Id: Ic20c3ce8ba9907c90afb315ce0d992209282cd0a
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ core/java/android/os/Build.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/java/android/os/Build.java b/core/java/android/os/Build.java
+index 3977bdf413d9..71144da29623 100755
+--- a/core/java/android/os/Build.java
++++ b/core/java/android/os/Build.java
+@@ -1314,7 +1314,7 @@ public class Build {
+      */
+     public static boolean isBuildConsistent() {
+         // Don't care on eng builds.  Incremental build may trigger false negative.
+-        if (IS_ENG) return true;
++        if (!IS_USER) return true;
+ 
+         if (IS_TREBLE_ENABLED) {
+             int result = VintfObject.verifyBuildAtBoot();
+-- 
+2.50.1
+

@@ -1,7 +1,7 @@
-From 8fbfa2d19d69320121c9c59d822d448949112903 Mon Sep 17 00:00:00 2001
+From 1216ec316d75e6ef4c58660302ec64f0e62e0900 Mon Sep 17 00:00:00 2001
 From: Ziyang Zhou <ziyang.zhou@outlook.com>
 Date: Sun, 22 Nov 2020 14:39:24 +0800
-Subject: [PATCH 3/6] vold: Fix fuse sdcard
+Subject: [PATCH 3/7] vold: Fix fuse sdcard
 
 Change-Id: I4bb042fc3ddbbfaaddafbce81c1dcb8d1523c049
 ---
@@ -9,10 +9,10 @@ Change-Id: I4bb042fc3ddbbfaaddafbce81c1dcb8d1523c049
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/model/EmulatedVolume.cpp b/model/EmulatedVolume.cpp
-index 270d097..c270acb 100644
+index 270dcd48..f45a6fcd 100644
 --- a/model/EmulatedVolume.cpp
 +++ b/model/EmulatedVolume.cpp
-@@ -281,8 +281,8 @@ status_t EmulatedVolume::doMount() {
+@@ -364,8 +364,8 @@ status_t EmulatedVolume::doMount() {
                      "-m",
                      "-w",
                      "-G",
@@ -24,5 +24,5 @@ index 270d097..c270acb 100644
                      label.c_str(),
                      NULL)) {
 -- 
-2.39.2
+2.50.1
 

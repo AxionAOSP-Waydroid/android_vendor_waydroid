@@ -1,7 +1,7 @@
-From f85548816c0b5967254d5ecfa8d043e76bd487d1 Mon Sep 17 00:00:00 2001
+From 46f498582440d3ce08f34791f77043d1ff883da5 Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Thu, 30 Mar 2023 23:54:24 +0200
-Subject: [PATCH 6/6] vold: Allow failing to set quota
+Subject: [PATCH 6/7] vold: Allow failing to set quota
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -14,10 +14,10 @@ Change-Id: Ife826ce755d34616e261c773e6106e027372f1e3
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Utils.cpp b/Utils.cpp
-index a7e85f2..7c946d8 100644
+index d0c40ad4..a281f260 100644
 --- a/Utils.cpp
 +++ b/Utils.cpp
-@@ -218,7 +218,7 @@ int SetQuotaInherit(const std::string& path) {
+@@ -221,7 +221,7 @@ int SetQuotaInherit(const std::string& path) {
      ret = ioctl(fd, FS_IOC_SETFLAGS, &flags);
      if (ret == -1) {
          PLOG(ERROR) << "Failed to set flags for " << path << " to set project id inheritance.";
@@ -26,7 +26,7 @@ index a7e85f2..7c946d8 100644
      }
  
      return 0;
-@@ -243,7 +243,7 @@ int SetQuotaProjectId(const std::string& path, long projectId) {
+@@ -246,7 +246,7 @@ int SetQuotaProjectId(const std::string& path, long projectId) {
      ret = ioctl(fd, FS_IOC_FSSETXATTR, &fsx);
      if (ret == -1) {
          PLOG(ERROR) << "Failed to set project id on " << path;
@@ -36,5 +36,5 @@ index a7e85f2..7c946d8 100644
      return 0;
  }
 -- 
-2.39.2
+2.50.1
 

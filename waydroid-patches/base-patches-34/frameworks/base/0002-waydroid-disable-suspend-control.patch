@@ -1,7 +1,7 @@
-From 1f570f06d65fb50f3d4ad8884639ed9aa00c370d Mon Sep 17 00:00:00 2001
+From 91c363084b8d566338f40d3e7c548ec0bb41c045 Mon Sep 17 00:00:00 2001
 From: Asriel Dreemurr <asriel.danctnix@gmail.com>
 Date: Sun, 15 Nov 2020 00:24:46 +0700
-Subject: [PATCH 02/29] (waydroid) disable suspend control
+Subject: [PATCH 02/23] (waydroid) disable suspend control
 
 Change-Id: I1c8cbb5980efc063fae25597b3c6e927a682c1ca
 ---
@@ -9,10 +9,10 @@ Change-Id: I1c8cbb5980efc063fae25597b3c6e927a682c1ca
  1 file changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/services/core/jni/com_android_server_power_PowerManagerService.cpp b/services/core/jni/com_android_server_power_PowerManagerService.cpp
-index 0f19c1fdfc47..3e590fcd9644 100644
+index ec9536c01760..eaf25ba9f833 100644
 --- a/services/core/jni/com_android_server_power_PowerManagerService.cpp
 +++ b/services/core/jni/com_android_server_power_PowerManagerService.cpp
-@@ -184,10 +184,11 @@ sp<system::suspend::internal::ISuspendControlServiceInternal> getSuspendControlI
+@@ -179,10 +179,11 @@ sp<system::suspend::internal::ISuspendControlServiceInternal> getSuspendControlI
  void enableAutoSuspend() {
      static bool enabled = false;
      if (!enabled) {
@@ -26,7 +26,7 @@ index 0f19c1fdfc47..3e590fcd9644 100644
      }
  
      {
-@@ -202,10 +203,11 @@ void enableAutoSuspend() {
+@@ -197,10 +198,11 @@ void enableAutoSuspend() {
  void disableAutoSuspend() {
      std::lock_guard<std::mutex> lock(gSuspendMutex);
      if (!gSuspendBlocker) {
@@ -41,5 +41,5 @@ index 0f19c1fdfc47..3e590fcd9644 100644
  }
  
 -- 
-2.48.1
+2.50.1
 

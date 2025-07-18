@@ -1,0 +1,27 @@
+From 56cc7362bdf6a0fe462cb04764ef8e7f4b72041c Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 12:08:05 +0000
+Subject: [PATCH 07/23] SystemConfig: Add host-permissions dir
+
+Change-Id: Ic83f4ed1b94a70c6c6bd46324ed89f20955231d9
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ services/core/java/com/android/server/SystemConfig.java | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/services/core/java/com/android/server/SystemConfig.java b/services/core/java/com/android/server/SystemConfig.java
+index e1d7be121865..d9cd68b62948 100644
+--- a/services/core/java/com/android/server/SystemConfig.java
++++ b/services/core/java/com/android/server/SystemConfig.java
+@@ -638,6 +638,8 @@ public class SystemConfig {
+                 Environment.getVendorDirectory(), "etc", "sysconfig"), vendorPermissionFlag);
+         readPermissions(parser, Environment.buildPath(
+                 Environment.getVendorDirectory(), "etc", "permissions"), vendorPermissionFlag);
++        readPermissions(parser, Environment.buildPath(
++                Environment.getVendorDirectory(), "etc", "host-permissions"), vendorPermissionFlag);
+ 
+         String vendorSkuProperty = SystemProperties.get(VENDOR_SKU_PROPERTY, "");
+         if (!vendorSkuProperty.isEmpty()) {
+-- 
+2.50.1
+

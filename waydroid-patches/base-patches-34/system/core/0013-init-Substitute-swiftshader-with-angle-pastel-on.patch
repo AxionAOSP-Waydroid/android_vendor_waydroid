@@ -1,0 +1,38 @@
+From 8420acd61e60a0b3eaa9c4c9ec4a768a9e2206b9 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Fri, 18 Jul 2025 14:59:50 +0000
+Subject: [PATCH 13/16] init: Substitute swiftshader with angle+pastel on 
+ vendor>=33
+
+Vendor 33 does not include a swiftshader OpenGL driver anymore;
+instead, the intended replacement is to use the swiftshader Vulkan
+driver called "pastel", with the ANGLE translator.
+
+Change-Id: Ibd998b56481992b641a34551ea05adf959c70f8f
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ init/property_service.cpp | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/init/property_service.cpp b/init/property_service.cpp
+index 4b412a09a3..556e434f1d 100644
+--- a/init/property_service.cpp
++++ b/init/property_service.cpp
+@@ -1214,6 +1214,14 @@ void PropertyLoadBootDefaults() {
+     load_properties_from_file("/odm_dlkm/etc/build.prop", nullptr, &properties);
+     load_properties_from_partition("odm", /* support_legacy_path_until */ 28);
+     load_properties_from_partition("product", /* support_legacy_path_until */ 30);
++ 
++    if (int vendor; ParseInt(properties["ro.vendor.build.version.sdk"], &vendor) &&
++        vendor >= 33) {
++        if (properties["ro.hardware.egl"] == "swiftshader") {
++            properties["ro.hardware.egl"] = "angle";
++            properties["ro.hardware.vulkan"] = "pastel";
++        }
++    }
+ 
+     if (access(kDebugRamdiskProp, R_OK) == 0) {
+         LOG(INFO) << "Loading " << kDebugRamdiskProp;
+-- 
+2.50.1
+
