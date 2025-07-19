@@ -23,7 +23,7 @@ index 84ff9d74ef..3d1cd80f32 100644
          "liblog",
          "libutils",
 diff --git a/libs/binder/IPCThreadState.cpp b/libs/binder/IPCThreadState.cpp
-index ef96f803c3..584377f98b 100644
+index ef96f803c3..8883602944 100644
 --- a/libs/binder/IPCThreadState.cpp
 +++ b/libs/binder/IPCThreadState.cpp
 @@ -22,6 +22,7 @@
@@ -34,8 +34,8 @@ index ef96f803c3..584377f98b 100644
  #include <cutils/sched_policy.h>
  #include <utils/CallStack.h>
  #include <utils/Log.h>
-@@ -374,6 +375,11 @@ pid_t IPCThreadState::getCallingPid() const
- const char* IPCThreadState::getCallingSid() const
+@@ -368,6 +369,11 @@ status_t IPCThreadState::clearLastError()
+ pid_t IPCThreadState::getCallingPid() const
  {
      checkContextIsBinderForUse(__func__);
 +    if (mCallingUid != 1000) {
@@ -43,7 +43,7 @@ index ef96f803c3..584377f98b 100644
 +        if (mCallingUid == (uid_t)hostuid)
 +            return 1000;
 +    }
-     return mCallingSid;
+     return mCallingPid;
  }
  
 -- 

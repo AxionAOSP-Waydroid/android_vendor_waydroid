@@ -20,7 +20,7 @@ index bf1671e42287..be27560ab16a 100644
                  (isCar || isTv || mService.mIsPc || mDisplayContent.forceDesktopMode()
 -                        || !mDisplayContent.shouldRotateWithContent())
 +                        || !mDisplayContent.shouldRotateWithContent() ||
-++                          SystemProperties.getBoolean("waydroid.stub_sensors_hal", false))
++                           SystemProperties.getBoolean("waydroid.stub_sensors_hal", false))
                  // For debug purposes the next line turns this feature off with:
                  // $ adb shell setprop config.override_forced_orient true
                  // $ adb shell wm size reset
