@@ -13,7 +13,7 @@ diff --git a/Android.bp b/Android.bp
 index 1d729ef..f06fd9b 100644
 --- a/Android.bp
 +++ b/Android.bp
-@@ -74,13 +74,19 @@ cc_library {
+@@ -74,13 +74,18 @@ cc_library {
  
      export_include_dirs: ["."],
  
@@ -27,7 +27,6 @@ index 1d729ef..f06fd9b 100644
          "//apex_available:platform", // For odsign.
 +        "com.android.neuralnetworks",
 +        "test_com.android.neuralnetworks",
-+        "com.android.bluetooth",
 +        "com.android.media",
 +        "com.android.media.swcodec",
 +        "com.android.tethering",
