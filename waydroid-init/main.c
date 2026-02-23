@@ -407,7 +407,7 @@ int main(int argc, char **argv) {
         // Disable VA-API for vmwgfx
         property_set("media.sf.hwaccel", "0");
         property_set("debug.ffmpeg-codec2.hwaccel.drm", "0");
-        property_set("debug.ffmpeg-codec2.pixel_format", "RGB_565");
+        property_set("debug.ffmpeg-codec2.pixel_format", "RGBX_8888");
     } else {
         property_set("debug.ffmpeg-codec2.pixel_format", "RGBX_8888");
     }
