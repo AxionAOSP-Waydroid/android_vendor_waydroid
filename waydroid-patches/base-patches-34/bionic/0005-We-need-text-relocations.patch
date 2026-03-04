@@ -1,4 +1,4 @@
-From 128b73f01c0c2abf14ccd21a0b4f7b248af213e4 Mon Sep 17 00:00:00 2001
+From f7efdbb195ce672db2ac936e540b4fb4006313d1 Mon Sep 17 00:00:00 2001
 From: Chih-Wei Huang <cwhuang@linux.org.tw>
 Date: Thu, 8 Mar 2018 12:30:36 +0800
 Subject: [PATCH 5/6] We need text relocations
@@ -29,5 +29,5 @@ index e64081f90..87e22f990 100644
        DL_ERR("can't unprotect loadable segments for \"%s\": %s", get_realpath(), strerror(errno));
        return false;
 -- 
-2.52.0
+2.53.0
 

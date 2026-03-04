@@ -1,4 +1,4 @@
-From e39dca862e2289f41139bdc0273c5b89cfa8b741 Mon Sep 17 00:00:00 2001
+From e30f7ea1b96ef7b48d2cb3efe43910a0b8da8a9d Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Sun, 13 Oct 2024 18:52:35 +0200
 Subject: [PATCH] Add prebuilt mesa tools to PATH
@@ -47,5 +47,5 @@ index 0000000..3104b7c
 +../../../mesa-tools/vtn_bindgen2
 \ No newline at end of file
 -- 
-2.52.0
+2.53.0
 

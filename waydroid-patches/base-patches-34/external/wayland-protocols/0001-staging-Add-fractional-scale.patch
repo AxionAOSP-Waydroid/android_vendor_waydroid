@@ -1,4 +1,4 @@
-From 8153821a70a6b29956da531a0c741811a4445fd6 Mon Sep 17 00:00:00 2001
+From 17df526c874c2f926e1e81ee26b5f06cdc72251c Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Thu, 21 Sep 2023 23:00:31 +0200
 Subject: [PATCH] staging: Add fractional-scale
@@ -131,5 +131,5 @@ index 0000000..350bfc0
 +  </interface>
 +</protocol>
 -- 
-2.52.0
+2.53.0
 

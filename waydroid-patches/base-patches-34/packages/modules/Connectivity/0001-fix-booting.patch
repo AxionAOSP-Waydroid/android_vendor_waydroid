@@ -1,4 +1,4 @@
-From b808feba7e5f297560c7a9b7234a9612aaf864cb Mon Sep 17 00:00:00 2001
+From 79df6eb8cbf4f149945b040ebf0ff2795d32c20c Mon Sep 17 00:00:00 2001
 From: Ziyang Zhou <ziyang.zhou@outlook.com>
 Date: Sat, 17 Jan 2026 14:13:30 +0000
 Subject: [PATCH] fix booting
@@ -63,5 +63,5 @@ index c125bd6479..06218938df 100644
  }
  
 -- 
-2.52.0
+2.53.0
 

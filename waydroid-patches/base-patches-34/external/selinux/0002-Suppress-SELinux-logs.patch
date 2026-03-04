@@ -1,4 +1,4 @@
-From 1bace6f5f6d3ad9ae04caa6604813a46287fee6e Mon Sep 17 00:00:00 2001
+From 75366f01acfae19e9d190c1d1b33aaf0aa9fc392 Mon Sep 17 00:00:00 2001
 From: SupeChicken666 <me@supechicken666.dev>
 Date: Thu, 19 Feb 2026 16:17:23 +0000
 Subject: [PATCH 2/2] Suppress SELinux logs
@@ -28,5 +28,5 @@ index 83066118..29d19d4b 100644
  }
  
 -- 
-2.52.0
+2.53.0
 

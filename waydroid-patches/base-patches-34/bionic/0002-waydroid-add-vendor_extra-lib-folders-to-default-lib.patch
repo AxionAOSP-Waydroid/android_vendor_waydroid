@@ -1,4 +1,4 @@
-From fe18cf2a3b4fdc029bb2274c3a32710d60cbb8ed Mon Sep 17 00:00:00 2001
+From 65b6416607924fe75806a333cc9b3797af1fb53c Mon Sep 17 00:00:00 2001
 From: Asriel Dreemurr <asriel.danctnix@gmail.com>
 Date: Mon, 22 Mar 2021 10:13:32 +0700
 Subject: [PATCH 2/6] (waydroid) add /vendor_extra lib folders to default
@@ -48,5 +48,5 @@ index f9bb02913..d6a84fa28 100644
    nullptr
  };
 -- 
-2.52.0
+2.53.0
 

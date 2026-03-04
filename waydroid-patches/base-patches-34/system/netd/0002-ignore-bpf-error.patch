@@ -1,4 +1,4 @@
-From 74f7db43a69c2f35f1ecff36258f3693bc209fee Mon Sep 17 00:00:00 2001
+From 7954fc37ba734ab7a533b55a55b63a5a9fc2425e Mon Sep 17 00:00:00 2001
 From: Ziyang Zhou <ziyang.zhou@outlook.com>
 Date: Sun, 14 Aug 2022 11:53:19 +0800
 Subject: [PATCH 2/3] ignore bpf error
@@ -20,5 +20,5 @@ index b0c5406d..8ef2f192 100644
      gLog.info("libnetd_updatable_init success");
  
 -- 
-2.52.0
+2.53.0
 

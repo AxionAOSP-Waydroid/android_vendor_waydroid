@@ -1,4 +1,4 @@
-From 8f866fad662f41208805f587249d10b343d638e6 Mon Sep 17 00:00:00 2001
+From bd47d79b2618656b506a4e547120fa3ee54ebd3f Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Thu, 30 Mar 2023 23:54:24 +0200
 Subject: [PATCH 6/8] vold: Allow failing to set quota
@@ -36,5 +36,5 @@ index d0c40ad..a281f26 100644
      return 0;
  }
 -- 
-2.52.0
+2.53.0
 

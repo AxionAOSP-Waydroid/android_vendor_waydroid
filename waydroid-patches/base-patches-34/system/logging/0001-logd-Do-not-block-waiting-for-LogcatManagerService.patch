@@ -1,4 +1,4 @@
-From a8ce713f99dd5f23ffc146d9f5906ef69c5583eb Mon Sep 17 00:00:00 2001
+From fcb9bfcfdf973ae54b81eb96a9b0eba0c9135727 Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Fri, 23 May 2025 00:16:25 +0200
 Subject: [PATCH] logd: Do not block waiting for LogcatManagerService
@@ -25,5 +25,5 @@ index c31aa279..f197f276 100644
  
  static sp<ILogcatManagerService> GetLogcatService() {
 -- 
-2.52.0
+2.53.0
 

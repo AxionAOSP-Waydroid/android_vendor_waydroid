@@ -1,4 +1,4 @@
-From 60acc5f0e422cc5ac16ec304302ad94e25bc28ea Mon Sep 17 00:00:00 2001
+From 893177bce69f931a983d86616b81e487071c1c82 Mon Sep 17 00:00:00 2001
 From: Alessandro Astone <ales.astone@gmail.com>
 Date: Fri, 18 Jul 2025 15:23:29 +0000
 Subject: [PATCH 7/8] vold: Disable AbortFuseConnections
@@ -30,5 +30,5 @@ index a281f26..d121845 100644
  
      static constexpr const char* kFuseConnections = "/sys/fs/fuse/connections";
 -- 
-2.52.0
+2.53.0
 

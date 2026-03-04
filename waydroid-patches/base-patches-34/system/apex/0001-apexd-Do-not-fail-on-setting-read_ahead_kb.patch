@@ -1,4 +1,4 @@
-From 5e270b73b80d2028a81d4ee9b65af67ee2366a92 Mon Sep 17 00:00:00 2001
+From f5b08aa43dd6702b9389be5e987adeca762a684f Mon Sep 17 00:00:00 2001
 From: SupeChicken666 <me@supechicken666.dev>
 Date: Sun, 18 Jan 2026 16:01:29 +0000
 Subject: [PATCH] apexd: Do not fail on setting read_ahead_kb
@@ -34,5 +34,5 @@ index e15a7fa8..0effc72b 100644
    return {};
  }
 -- 
-2.52.0
+2.53.0
 

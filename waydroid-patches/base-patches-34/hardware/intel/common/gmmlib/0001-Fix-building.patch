@@ -1,4 +1,4 @@
-From 1a97e8e30597d840f6e52b80933207b83ef424d5 Mon Sep 17 00:00:00 2001
+From 9a7bf078290d2f2ea0fbc4b3aa5ca8a8025888d1 Mon Sep 17 00:00:00 2001
 From: SupeChicken666 <me@supechicken666.dev>
 Date: Mon, 8 Sep 2025 17:12:13 +0000
 Subject: [PATCH] Fix building
@@ -26,5 +26,5 @@ index c557b22..d66a093 100644
          "-Wno-shift-negative-value",
          "-Wno-unused-parameter",
 -- 
-2.50.1
+2.53.0
 

@@ -1,4 +1,4 @@
-From cae3797a24452e79b62e7da92f3e7a5aaa875a71 Mon Sep 17 00:00:00 2001
+From 4367f893613ea46864b764a0f2f24fba4ff3cab9 Mon Sep 17 00:00:00 2001
 From: Ziyang Zhou <ziyang.zhou@outlook.com>
 Date: Sun, 9 May 2021 23:44:12 +0800
 Subject: [PATCH 1/2] ignore selinux
@@ -161,5 +161,5 @@ index fbe64301..bafe6bb6 100644
  	char		path[PATH_MAX];
  	long		pagesize;
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From ef370e4fb009c15fca8ba0eda18cf7bbc3ee8f66 Mon Sep 17 00:00:00 2001
+From b67c40d526d83eb1565941f77e9b02c2193a005a Mon Sep 17 00:00:00 2001
 From: Timi <timi.rautamaki@gmail.com>
 Date: Sun, 8 Dec 2024 22:56:25 +0200
 Subject: [PATCH] atv: Drop prebuilt launcher
@@ -152765,5 +152765,5 @@ index bfb6267..5564491 100644
          <permission name="android.permission.BACKUP"/>
          <permission name="android.permission.DELETE_CACHE_FILES"/>
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From c8ba46600d61f3cc9e1541dd405270a185b62c99 Mon Sep 17 00:00:00 2001
+From 87ea6ed1a45e16cce09dedd14737e6344ac56aa1 Mon Sep 17 00:00:00 2001
 From: "Christopher R. Palmer" <crpalmer@gmail.com>
 Date: Sun, 7 Feb 2016 06:46:05 -0500
 Subject: [PATCH 3/6] linker: Allow text-relocs for x86 (only)
@@ -40,5 +40,5 @@ index d6a84fa28..e64081f90 100644
      // phdr_table_protect_segments() after all of them are applied.
      DL_WARN_documented_change(23,
 -- 
-2.52.0
+2.53.0
 

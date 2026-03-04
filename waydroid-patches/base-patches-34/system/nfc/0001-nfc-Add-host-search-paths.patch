@@ -1,4 +1,4 @@
-From f0798ceaf1a8a3d1cf9706b9f94b486610f1ce86 Mon Sep 17 00:00:00 2001
+From 54193596cff05e2451e87c067826b23d5ac833ad Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Fri, 21 May 2021 01:30:12 +0800
 Subject: [PATCH] nfc: Add host search paths
@@ -21,5 +21,5 @@ index f635fd50..9c3f109a 100644
    };
    for (std::string path : search_path) {
 -- 
-2.52.0
+2.53.0
 

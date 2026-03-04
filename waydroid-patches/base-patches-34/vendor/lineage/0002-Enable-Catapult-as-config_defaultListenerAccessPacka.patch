@@ -1,4 +1,4 @@
-From 5f54b1e514b5e80ad6eff4939774fdfcdba273d7 Mon Sep 17 00:00:00 2001
+From 23b730c0ba5baf2ba82b49909a4400620913ed7a Mon Sep 17 00:00:00 2001
 From: Timi <timi.rautamaki@gmail.com>
 Date: Fri, 20 Dec 2024 08:46:19 +0200
 Subject: [PATCH 2/2] Enable Catapult as config_defaultListenerAccessPackages
@@ -36,5 +36,5 @@ index 00000000..1bce3aff
 +    <string name="config_defaultListenerAccessPackages" translatable="false">org.lineageos.tv.launcher</string>
 +</resources>
 -- 
-2.52.0
+2.53.0
 

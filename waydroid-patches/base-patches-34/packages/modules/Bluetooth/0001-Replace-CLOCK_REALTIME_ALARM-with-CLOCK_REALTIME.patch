@@ -1,4 +1,4 @@
-From 0ef450772268553283667d246c86121a7dadf783 Mon Sep 17 00:00:00 2001
+From 7f6c815fa55c672f72e07576967fc461ec514fb9 Mon Sep 17 00:00:00 2001
 From: SupeChicken666 <me@supechicken666.dev>
 Date: Sun, 18 Jan 2026 16:13:28 +0000
 Subject: [PATCH] Replace CLOCK_REALTIME_ALARM with CLOCK_REALTIME
@@ -7,11 +7,11 @@ Waydroid should not interrupt the host from sleeping
 
 Change-Id: Ifc4bdecd87439203830ce9bb34a4fd208c014d3e
 ---
- system/gd/os/linux_generic/alarm.cc           |  2 +-
- system/gd/os/linux_generic/repeating_alarm.cc |  2 +-
- system/gd/rust/common/src/time.rs             |  2 +-
- system/osi/src/alarm.cc                       |  2 +-
- 4 files changed, 82 insertions(+), 4 deletions(-)
+ system/gd/os/linux_generic/alarm.cc           | 2 +-
+ system/gd/os/linux_generic/repeating_alarm.cc | 2 +-
+ system/gd/rust/common/src/time.rs             | 2 +-
+ system/osi/src/alarm.cc                       | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/system/gd/os/linux_generic/alarm.cc b/system/gd/os/linux_generic/alarm.cc
 index 4820018eb1..235b7c77b8 100644
@@ -20,7 +20,7 @@ index 4820018eb1..235b7c77b8 100644
 @@ -26,7 +26,7 @@
  #include "os/log.h"
  #include "os/utils.h"
-
+ 
 -#ifdef __ANDROID__
 +#if 0
  #define ALARM_CLOCK CLOCK_BOOTTIME_ALARM
@@ -33,7 +33,7 @@ index c549fd8aa9..295ddf42cc 100644
 @@ -26,7 +26,7 @@
  #include "os/log.h"
  #include "os/utils.h"
-
+ 
 -#ifdef __ANDROID__
 +#if 0
  #define ALARM_CLOCK CLOCK_BOOTTIME_ALARM
@@ -45,7 +45,7 @@ index 0fd2226a4a..99d01a0362 100644
 +++ b/system/gd/rust/common/src/time.rs
 @@ -100,7 +100,7 @@ impl Interval {
  }
-
+ 
  fn get_clock() -> ClockId {
 -    if cfg!(target_os = "android") {
 +    if false {
@@ -65,6 +65,6 @@ index 408f4f3bee..51f6cc8c9c 100644
      LOG_ERROR("%s unable to create timer with clock %d: %s", __func__, clock_id,
                strerror(errno));
      if (clock_id == CLOCK_BOOTTIME_ALARM) {
---
-2.52.0
+-- 
+2.53.0
 

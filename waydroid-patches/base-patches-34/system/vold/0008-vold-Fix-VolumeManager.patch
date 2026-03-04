@@ -1,4 +1,4 @@
-From 1c70d5af51314ea2f6b50de2a46c671181d39f34 Mon Sep 17 00:00:00 2001
+From 4f40c2c86f3cd7c9a87040bc9c1d728d39ca506e Mon Sep 17 00:00:00 2001
 From: SupeChicken666 <me@supechicken666.dev>
 Date: Sat, 24 Jan 2026 08:06:51 +0000
 Subject: [PATCH 8/8] vold: Fix VolumeManager
@@ -27,5 +27,5 @@ index 26bab85..85b5f35 100644
  
      // Look for a directory in /sys/block containing size where the name is a shortened
 -- 
-2.52.0
+2.53.0
 

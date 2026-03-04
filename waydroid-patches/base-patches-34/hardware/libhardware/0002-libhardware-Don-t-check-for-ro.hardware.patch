@@ -1,4 +1,4 @@
-From ba5c236f247bbc5cab6f7d5a4d416451e2e632e9 Mon Sep 17 00:00:00 2001
+From da5322ee940ef2b1ccb92a94c691e2e83745dc7e Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Tue, 20 Apr 2021 16:31:17 +0800
 Subject: [PATCH 2/5] libhardware: Don't check for ro.hardware
@@ -22,5 +22,5 @@ index eeef5a00..cfe27081 100644
      "ro.board.platform",
      "ro.arch"
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From 4739aff2da4e7e0e7442d068174e6b974fdc448d Mon Sep 17 00:00:00 2001
+From 8403c9a8ef91b4108908ede22765d4d3c439daec Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Sun, 26 Sep 2021 04:50:03 +0330
 Subject: [PATCH 4/5] gralloc: Force use ashmem
@@ -30,5 +30,5 @@ index f7ea01cf..69c6cd93 100644
          dev = (gralloc_context_t*)malloc(sizeof(*dev));
  
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From e3053ee336fde735f60d2787e0ba6200fcba6eb9 Mon Sep 17 00:00:00 2001
+From 00d3a0763c74313ed80cc27fa104b4397e92e7a8 Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Mon, 18 Oct 2021 13:20:28 +0800
 Subject: [PATCH 5/8] vold: Disable fstab check
@@ -29,5 +29,5 @@ index b1b42fd..b879819 100644
      configs->has_adoptable = false;
      configs->has_quota = false;
 -- 
-2.52.0
+2.53.0
 

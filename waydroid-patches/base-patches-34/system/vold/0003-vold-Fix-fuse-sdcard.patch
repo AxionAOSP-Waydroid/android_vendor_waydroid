@@ -1,4 +1,4 @@
-From 2204a2375f06afe41bafc46ab85f8306214a3d29 Mon Sep 17 00:00:00 2001
+From cdcedfab3cf043f375817e21fd51f8d71738b5a7 Mon Sep 17 00:00:00 2001
 From: Ziyang Zhou <ziyang.zhou@outlook.com>
 Date: Sun, 22 Nov 2020 14:39:24 +0800
 Subject: [PATCH 3/8] vold: Fix fuse sdcard
@@ -24,5 +24,5 @@ index 270dcd4..f45a6fc 100644
                      label.c_str(),
                      NULL)) {
 -- 
-2.52.0
+2.53.0
 

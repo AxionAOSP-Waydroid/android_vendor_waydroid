@@ -1,4 +1,4 @@
-From 5db13f521cb5d619b24dc784f9f8d0df2b9a84d6 Mon Sep 17 00:00:00 2001
+From 0c1897c038b67df4a881ff4ce4e67fa79504eb03 Mon Sep 17 00:00:00 2001
 From: Chih-Wei Huang <cwhuang@linux.org.tw>
 Date: Wed, 24 Aug 2016 22:58:24 +0800
 Subject: [PATCH 4/6] Add syscalls ioperm and iopl
@@ -165,5 +165,5 @@ index 2c8ec0796..c7f85d8d3 100644
      isalnum_l; # introduced=21
      isalpha;
 -- 
-2.52.0
+2.53.0
 

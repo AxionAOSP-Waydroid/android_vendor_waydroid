@@ -1,4 +1,4 @@
-From d9999fa2954c898ce26970059da97671a6e9ca99 Mon Sep 17 00:00:00 2001
+From b6a208c604905d2a2eb7bd22f0d691ec5ce832bd Mon Sep 17 00:00:00 2001
 From: TheKit <nekit1000@gmail.com>
 Date: Fri, 18 Jul 2025 15:21:27 +0000
 Subject: [PATCH 2/8] (halium) do not attempt to mount partitions with metadata
@@ -25,5 +25,5 @@ index 1f7d649..f0ce8e5 100644
      if (encrypted_state != "" && encrypted_state != "encrypted") {
          LOG(ERROR) << "fscrypt_mount_metadata_encrypted got unexpected starting state: "
 -- 
-2.52.0
+2.53.0
 

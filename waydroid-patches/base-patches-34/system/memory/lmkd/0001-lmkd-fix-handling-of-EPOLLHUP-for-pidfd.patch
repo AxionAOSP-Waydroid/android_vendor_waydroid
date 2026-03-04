@@ -1,4 +1,4 @@
-From 0f5f8cd8182cd7b95b1d124ec56e5a7ce6c761f8 Mon Sep 17 00:00:00 2001
+From e8d0c1ec14aa84e7548281283ab9a82d90be37fc Mon Sep 17 00:00:00 2001
 From: Suren Baghdasaryan <surenb@google.com>
 Date: Wed, 11 Sep 2024 10:03:34 -0700
 Subject: [PATCH] lmkd: fix handling of EPOLLHUP for pidfd
@@ -43,5 +43,5 @@ index 767f5d4..5ff6b8b 100644
          }
  
 -- 
-2.52.0
+2.53.0
 

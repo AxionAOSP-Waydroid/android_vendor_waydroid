@@ -1,4 +1,4 @@
-From 3a330f16572b543185967d138397cecede2caf29 Mon Sep 17 00:00:00 2001
+From 85c8fbdb0c5797e7d96a19af9294f0a8dc6aeddc Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=D0=90=D0=B7=D0=B0=D0=BB=D0=B8=D1=8F=20=D0=A1=D0=BC=D0=B0?=
  =?UTF-8?q?=D1=80=D0=B0=D0=B3=D0=B4=D0=BE=D0=B2=D0=B0?=
  <charming.flurry@yandex.ru>
@@ -47,5 +47,5 @@ index c942c1f2..cbac6fde 100644
          WriteFdExactly(fd.get(), "adbd is already running as root\n");
          return;
 -- 
-2.52.0
+2.53.0
 
