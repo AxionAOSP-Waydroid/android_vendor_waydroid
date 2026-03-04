@@ -16,17 +16,17 @@
   <!-- Display -->
   <project path="external/hbm-prebuilts" name="android-generic/external_hbm-prebuilts" remote="ghub" revision="refs/heads/11" />
   <project path="external/mesa" name="WayDroid-ATV/android_external_mesa3d" remote="ghub" revision="refs/heads/lineage-18.1" />
-  <project path="external/minigbm" name="WayDroid-ATV/android_external_minigbm" remote="ghub" revision="refs/heads/lineage-21" />
+  <project path="external/minigbm" name="WayDroid-ATV/android_external_minigbm" remote="ghub" revision="refs/heads/14-x86" />
   <project path="external/libdrm" name="WayDroid-ATV/android_external_libdrm" remote="ghub" revision="refs/heads/lineage-20" />
   <project path="external/llvm-project" name="WayDroid/android_external_llvm-project" remote="ghub" revision="refs/heads/lineage-18.1"/>
   <project path="hardware/intel/external/minigbm-intel" name="WayDroid-ATV/android_hardware_intel_external_minigbm-intel" remote="ghub" revision="refs/heads/celadon/a16/master" />
 
   <!-- Media -->
-  <project path="external/ffmpeg" name="WayDroid-ATV/android_external_ffmpeg" remote="ghub" revision="refs/heads/release/7.0-14" />
-  <project path="external/stagefright-plugins" name="WayDroid-ATV/external_stagefright-plugins" remote="ghub" revision="refs/heads/14-x86" />
+  <project path="external/ffmpeg" name="WayDroid-ATV/android_external_ffmpeg" remote="ghub" revision="refs/heads/release/7.1/14-x86" />
+  <project path="external/stagefright-plugins" name="WayDroid-ATV/external_stagefright-plugins" remote="ghub" revision="refs/heads/14-x86/ffmpeg-7.1" />
 
   <!-- VA-API -->
-  <project path="external/libva-utils" name="android-generic/external_libva-utils" remote="ghub" revision="refs/heads/14-x86" />
+  <project path="external/libva-utils" name="intel/libva-utils" remote="ghub" revision="refs/tags/2.23.0" />
   <project path="hardware/intel/common/libva" name="WayDroid-ATV/hardware_intel_common_libva" remote="ghub" revision="refs/heads/14-x86" />
   <project path="hardware/intel/common/vaapi" name="WayDroid-ATV/platform_hardware_intel_common_vaapi" remote="ghub" revision="refs/heads/14-x86" />
   <project path="hardware/intel/common/gmmlib" name="projectceladon/gmmlib" remote="ghub" revision="refs/heads/v22.8.0" />
@@ -42,7 +42,8 @@
   <project path="vendor/intel/proprietary/houdini" name="WayDroid-ATV/vendor_intel_proprietary_houdini" remote="ghub" revision="refs/heads/hpe-14" />
 
   <!-- GApps -->
-  <project path="vendor/gapps_tv" name="WayDroid-ATV/mindthegapps_tv" remote="ghub" revision="refs/heads/upsilon_x86_64" />
+  <project path="vendor/gapps" name="WayDroid-ATV/vendor_gapps" remote="ghub" revision="refs/heads/upsilon" />
+  <project path="vendor/gapps_tv" name="WayDroid-ATV/vendor_gapps_tv" remote="ghub" revision="refs/heads/upsilon_x86_64" />
 
   <!-- Build -->
   <project path="prebuilts/mesa-tools" name="WayDroid/android_prebuilts_mesa-tools" groups="pdk" clone-depth="1" remote="ghub" revision="refs/heads/main" />
