@@ -26,11 +26,11 @@
   <project path="external/stagefright-plugins" name="WayDroid-ATV/external_stagefright-plugins" remote="ghub" revision="refs/heads/14-x86/ffmpeg-7.1" />
 
   <!-- VA-API -->
+  <project path="external/libva" name="WayDroid-ATV/android_external_libva" remote="ghub" revision="refs/heads/14-x86" />
   <project path="external/libva-utils" name="intel/libva-utils" remote="ghub" revision="refs/tags/2.23.0" />
-  <project path="hardware/intel/common/libva" name="WayDroid-ATV/hardware_intel_common_libva" remote="ghub" revision="refs/heads/14-x86" />
-  <project path="hardware/intel/common/vaapi" name="WayDroid-ATV/platform_hardware_intel_common_vaapi" remote="ghub" revision="refs/heads/14-x86" />
-  <project path="hardware/intel/common/gmmlib" name="projectceladon/gmmlib" remote="ghub" revision="refs/heads/v22.8.0" />
-  <project path="hardware/intel/common/media-driver" name="projectceladon/media-driver" remote="ghub" revision="refs/heads/v25.2.6" />
+  <project path="vendor/intel/gmmlib" name="intel/gmmlib" remote="ghub" revision="refs/tags/intel-gmmlib-22.9.0" />
+  <project path="vendor/intel/media-driver" name="intel/media-driver" remote="ghub" revision="refs/tags/intel-media-25.4.6" />
+  <project path="vendor/intel/vaapi-driver" name="WayDroid-ATV/android_vendor_intel_vaapi-driver" remote="ghub" revision="refs/heads/14-x86" />
   <project path="vendor/intel/mediasdk_c2" name="WayDroid-ATV/android_vendor_intel_mediasdk_c2" remote="ghub" revision="refs/heads/celadon/a16/master" />
   <project path="vendor/intel/external/onevpl" name="projectceladon/libvpl" remote="ghub" revision="refs/heads/celadon/a16/master" />
   <project path="vendor/intel/external/onevpl-gpu-rt" name="projectceladon/vpl-gpu-rt" remote="ghub" revision="refs/heads/celadon/a16/master" />
