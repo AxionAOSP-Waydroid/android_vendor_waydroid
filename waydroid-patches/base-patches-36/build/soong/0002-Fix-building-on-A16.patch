@@ -1,0 +1,38 @@
+From 82d224bc604365737069141ea587f074cd044e10 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Tue, 10 Mar 2026 11:50:16 +0000
+Subject: [PATCH 2/4] Fix building on A16
+
+Change-Id: Ibcb7e3038b7db0364e7a61efe974490be56743ed
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ scripts/check_boot_jars/package_allowed_list.txt | 3 +++
+ ui/build/androidmk_denylist.go                   | 1 -
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/scripts/check_boot_jars/package_allowed_list.txt b/scripts/check_boot_jars/package_allowed_list.txt
+index 9836500..2d3891a 100644
+--- a/scripts/check_boot_jars/package_allowed_list.txt
++++ b/scripts/check_boot_jars/package_allowed_list.txt
+@@ -293,3 +293,6 @@ qcom.fmradio
+ ###################################################
+ # IFAA Manager used for Alipay and/or WeChat payment
+ org\.ifaa\.android\.manager.*
++
++# Waydroid
++vendor\.waydroid\..*
+diff --git a/ui/build/androidmk_denylist.go b/ui/build/androidmk_denylist.go
+index cf97f1c..b203cb8 100644
+--- a/ui/build/androidmk_denylist.go
++++ b/ui/build/androidmk_denylist.go
+@@ -34,7 +34,6 @@ var androidmk_denylist []string = []string{
+ 	"device/google/",
+ 	"device/google_car/",
+ 	"device/sample/",
+-	"external/",
+ 	"frameworks/",
+ 	"hardware/google/",
+ 	"hardware/interfaces/",
+-- 
+2.54.0
+

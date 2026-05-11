@@ -1,0 +1,93 @@
+From 2e46eb032456266e6a0d80cc0bd685ca7c10499b Mon Sep 17 00:00:00 2001
+From: Ziyang Zhou <ziyang.zhou@outlook.com>
+Date: Tue, 10 Mar 2026 12:18:18 +0000
+Subject: [PATCH 1/2] fix booting
+
+Co-authored-by: SupeChicken666 <me@supechicken666.dev>
+Change-Id: I9df0c603f7f93f37c7ee09a44ebc054595f07e18
+---
+ bpf/loader/NetBpfLoad.cpp                            | 12 +++++++-----
+ bpf/netd/NetdUpdatable.cpp                           |  1 -
+ ...m_android_server_connectivity_ClatCoordinator.cpp |  1 +
+ 3 files changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/bpf/loader/NetBpfLoad.cpp b/bpf/loader/NetBpfLoad.cpp
+index bdc2e8c..bf40025 100644
+--- a/bpf/loader/NetBpfLoad.cpp
++++ b/bpf/loader/NetBpfLoad.cpp
+@@ -1850,7 +1850,7 @@ static int doLoad(char** argv, char * const envp[]) {
+         // (this writeFile is known to fail on at least 4.19, but always defaults to 0 on
+         // pre-5.13, on 5.13+ it depends on CONFIG_BPF_UNPRIV_DEFAULT_OFF)
+         if (writeProcSysFile("/proc/sys/kernel/unprivileged_bpf_disabled", "0\n") &&
+-            isAtLeastKernelVersion(5, 13, 0)) return 1;
++            isAtLeastKernelVersion(5, 13, 0)) ALOGE("write 1 to /proc/sys/kernel/unprivileged_bpf_disabled FAILED");
+     }
+ 
+     if (isAtLeastU) {
+@@ -1865,12 +1865,12 @@ static int doLoad(char** argv, char * const envp[]) {
+         //  kernel does not have CONFIG_BPF_JIT=y)
+         // BPF_JIT is required by R VINTF (which means 4.14/4.19/5.4 kernels),
+         // but 4.14/4.19 were released with P & Q, and only 5.4 is new in R+.
+-        if (writeProcSysFile("/proc/sys/net/core/bpf_jit_enable", "1\n")) return 1;
++        if (writeProcSysFile("/proc/sys/net/core/bpf_jit_enable", "1\n")) ALOGE("write 1 to /proc/sys/net/core/bpf_jit_enable FAILED");
+ 
+         // Enable JIT kallsyms export for privileged users only
+         // (Note: this (open) will fail with ENOENT 'No such file or directory' if
+         //  kernel does not have CONFIG_HAVE_EBPF_JIT=y)
+-        if (writeProcSysFile("/proc/sys/net/core/bpf_jit_kallsyms", "1\n")) return 1;
++        if (writeProcSysFile("/proc/sys/net/core/bpf_jit_kallsyms", "1\n")) ALOGE("write 1 to /proc/sys/net/core/bpf_jit_kallsyms FAILED");
+     }
+ 
+     // Create all the pin subdirectories
+@@ -1899,9 +1899,11 @@ static int doLoad(char** argv, char * const envp[]) {
+             ALOGE("If this triggers reliably, you're probably missing kernel options or patches.");
+             ALOGE("If this triggers randomly, you might be hitting some memory allocation "
+                   "problems or startup script race.");
++            #if 0
+             ALOGE("--- DO NOT EXPECT SYSTEM TO BOOT SUCCESSFULLY ---");
+             sleep(20);
+             return 2;
++            #endif
+         }
+     }
+ 
+@@ -1915,10 +1917,10 @@ static int doLoad(char** argv, char * const envp[]) {
+     }
+ 
+     // on S we haven't created this subdir yet, but we need it for 'mainline_done' flag below
+-    if (!isAtLeastT && createSysFsBpfSubDir("netd_shared")) return 1;
++    if (!isAtLeastT) createSysFsBpfSubDir("netd_shared");
+ 
+     // leave a flag that we're done
+-    if (createSysFsBpfSubDir("netd_shared/mainline_done")) return 1;
++    createSysFsBpfSubDir("netd_shared/mainline_done");
+ 
+     // platform bpfloader will only succeed when run as root
+     if (!runningAsRoot) {
+diff --git a/bpf/netd/NetdUpdatable.cpp b/bpf/netd/NetdUpdatable.cpp
+index 3b15916..1fe491f 100644
+--- a/bpf/netd/NetdUpdatable.cpp
++++ b/bpf/netd/NetdUpdatable.cpp
+@@ -32,7 +32,6 @@ int libnetd_updatable_init(const char* cg2_path) {
+     android::netdutils::Status ret = sBpfHandler.init(cg2_path);
+     if (!android::netdutils::isOk(ret)) {
+         LOG(ERROR) << __func__ << ": Failed: (" << ret.code() << ") " << ret.msg();
+-        abort();
+     }
+     return 0;
+ }
+diff --git a/service/jni/com_android_server_connectivity_ClatCoordinator.cpp b/service/jni/com_android_server_connectivity_ClatCoordinator.cpp
+index 622fba8..fcb7fa0 100644
+--- a/service/jni/com_android_server_connectivity_ClatCoordinator.cpp
++++ b/service/jni/com_android_server_connectivity_ClatCoordinator.cpp
+@@ -132,6 +132,7 @@ static void verifyClatPerms() {
+ 
+ #undef V2
+ 
++    fatal = false;
+     if (fatal) abort();
+ }
+ 
+-- 
+2.54.0
+

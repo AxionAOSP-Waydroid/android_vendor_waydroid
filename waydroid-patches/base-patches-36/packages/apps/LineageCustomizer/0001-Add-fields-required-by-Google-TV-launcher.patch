@@ -1,0 +1,32 @@
+From 41d7f9bd31c994ce555a083395af3141ec42ed97 Mon Sep 17 00:00:00 2001
+From: SupeChicken666 <me@supechicken666.dev>
+Date: Thu, 2 Apr 2026 11:06:51 +0000
+Subject: [PATCH] Add fields required by Google TV launcher
+
+Change-Id: Iae79fee2dbc21c60cc110cf4a286cb031c2d132d
+Signed-off-by: SupeChicken666 <me@supechicken666.dev>
+---
+ res/raw/configuration.xml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/res/raw/configuration.xml b/res/raw/configuration.xml
+index 263895c..949f0c7 100644
+--- a/res/raw/configuration.xml
++++ b/res/raw/configuration.xml
+@@ -1,4 +1,13 @@
+ <configuration>
++    <!-- Fields required by Google TV launcher -->
++
++    <country value="all">
++        <basic-mode-live-tv-app-uri value="" />
++        <epg-app-deep-link url="" />
++        <oem-tab-content-provider-uri value="" />
++        <oem-tab-content-provider-package-name value="" />
++    </country>
++
+     <!-- Home Screen search icon -->
+ 
+     <!-- OEMs can define which apps will show up in the favorite apps row out of
+-- 
+2.54.0
+

@@ -1,0 +1,25 @@
+From 99b3b691a2068e109572835517c0274eca561c41 Mon Sep 17 00:00:00 2001
+From: Erfan Abdi <erfangplus@gmail.com>
+Date: Sun, 2 May 2021 02:06:01 +0800
+Subject: [PATCH 1/4] (waydroid) do not fail on VNDK ABI mismatch
+
+Change-Id: I439748c1e538aa5414a66799c6720f1775d34d04
+---
+ cc/library.go | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/cc/library.go b/cc/library.go
+index 7b85486..4aeb936 100644
+--- a/cc/library.go
++++ b/cc/library.go
+@@ -1516,6 +1516,7 @@ func (library *libraryDecorator) sourceAbiDiff(ctx android.ModuleContext,
+ 		extraFlags = append(extraFlags, "-allow-extensions")
+ 	}
+ 	extraFlags = append(extraFlags, headerAbiChecker.Diff_flags...)
++	extraFlags = append(extraFlags, "-advice-only")
+ 
+ 	library.sAbiDiff = append(
+ 		library.sAbiDiff,
+-- 
+2.54.0
+
