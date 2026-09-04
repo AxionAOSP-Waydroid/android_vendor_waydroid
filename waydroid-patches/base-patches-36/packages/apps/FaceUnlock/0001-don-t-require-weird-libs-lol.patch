@@ -1,0 +1,27 @@
+From 3002da9f2eb6bfc928c5c59ef90883e4c314cabb Mon Sep 17 00:00:00 2001
+From: AxionAOSP-Waydroid <slost5716@gmail.com>
+Date: Fri, 4 Sep 2026 23:35:58 +0000
+Subject: [PATCH] don't require weird libs lol
+
+---
+ Android.bp | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/Android.bp b/Android.bp
+index 82a72ca..ff89b00 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -26,10 +26,6 @@ android_app {
+     ],
+ 
+     required: [
+-        "libFaceDetectCA",
+-        "libmegface_faceunlock",
+-        "libMegviiUnlock",
+-        "libMegviiUnlock-jni-1.2",
+         "default_permissions_co.aospa.sense.xml",
+         "hiddenapi-whitelist-co.aospa.sense.xml",
+         "privapp_whitelist_co.aospa.sense.xml",
+-- 
+2.55.0
+
