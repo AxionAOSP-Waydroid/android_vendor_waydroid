@@ -1,0 +1,26 @@
+From 624f9e08fffa090476610f457d5be294a75164ac Mon Sep 17 00:00:00 2001
+From: AxionAOSP-Waydroid <slost5716@gmail.com>
+Date: Sat, 5 Sep 2026 03:21:34 +0000
+Subject: [PATCH] fix weird def
+
+Change-Id: Ie598660308ee62695d8abb257d41c50f935a6953
+---
+ tensorflow/lite/kernels/internal/optimized/neon_check.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/tensorflow/lite/kernels/internal/optimized/neon_check.h b/tensorflow/lite/kernels/internal/optimized/neon_check.h
+index 0b0307c6b44..a22da61b099 100644
+--- a/tensorflow/lite/kernels/internal/optimized/neon_check.h
++++ b/tensorflow/lite/kernels/internal/optimized/neon_check.h
+@@ -20,6 +20,8 @@ limitations under the License.
+ #include <arm_neon.h>
+ #endif
+ 
++#undef TF_LITE_DISABLE_X86_NEON
++#define TF_LITE_DISABLE_X86_NEON
+ #if defined __GNUC__ && defined __SSE4_1__ && !defined TF_LITE_DISABLE_X86_NEON
+ #define USE_NEON
+ #include "NEON_2_SSE.h"
+-- 
+2.55.0
+
